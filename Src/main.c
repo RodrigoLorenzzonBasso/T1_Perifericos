@@ -94,6 +94,10 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	
+	uint8_t vetor[30];
+	int cont=0;
+	TS_StateTypeDef TsState;
 
   /* USER CODE END 1 */
 
@@ -116,11 +120,22 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA2D_Init();
-  MX_FMC_Init();
   MX_I2C3_Init();
   MX_LTDC_Init();
   MX_SPI5_Init();
+  MX_FMC_Init();
   /* USER CODE BEGIN 2 */
+	
+	BSP_LCD_Init();
+	BSP_LCD_LayerDefaultInit(LCD_BACKGROUND_LAYER,LCD_FRAME_BUFFER);
+	BSP_LCD_LayerDefaultInit(LCD_FOREGROUND_LAYER,LCD_FRAME_BUFFER);
+	BSP_LCD_SelectLayer(LCD_FOREGROUND_LAYER);
+	BSP_LCD_DisplayOn();
+	BSP_LCD_Clear(LCD_COLOR_WHITE);
+	BSP_LCD_SetTextColor(LCD_COLOR_RED);
+	BSP_LCD_DisplayStringAtLine(1,(uint8_t*)"TESTE LINHA 1");
+	BSP_TS_Init(240, 320);
+
 
   /* USER CODE END 2 */
 
@@ -131,6 +146,20 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		
+		sprintf((char*)vetor,"Contador=%d",cont);
+		BSP_LCD_DisplayStringAtLine(2,(uint8_t*)vetor);
+		BSP_TS_GetState(&TsState);
+		if(TsState.TouchDetected)
+		{
+			sprintf((char*)vetor,"X=%03d, Y=%03d",TsState.X,TsState.Y);
+			BSP_LCD_DisplayStringAtLine(4,(uint8_t*)vetor);
+			TsState.X=0;
+			TsState.Y=0;
+		}
+		cont++;
+		HAL_Delay(100);
+		
   }
   /* USER CODE END 3 */
 }
@@ -161,7 +190,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    Error_Handler();
+    Error_Handler(); 
   }
   /**Initializes the CPU, AHB and APB busses clocks 
   */
