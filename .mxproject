@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=C:/Users/17103308/Desktop/DisplayLCD/Inc
+HeaderPath=C:/Users/17103308/Desktop/T1_Perifericos/Inc
 HeaderFiles=gpio.h;dma2d.h;fmc.h;i2c.h;ltdc.h;spi.h;stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;rtc.h;
-SourcePath=C:/Users/17103308/Desktop/DisplayLCD/Src
+SourcePath=C:/Users/17103308/Desktop/T1_Perifericos/Src
 SourceFiles=gpio.c;dma2d.c;fmc.c;i2c.c;ltdc.c;spi.c;stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;rtc.c;
 
 [PreviousLibFiles]
