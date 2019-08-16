@@ -1954,10 +1954,12 @@ int hour;
 int minute;
 int second;
 
-int pauseClock = 0;
+char pauseClock = 0;
 
-int timeSelect = 0;
-int timeSelection = 0;
+char timeSelect = 0;
+char timeSelection = 0;
+
+char clockConfig = 0;
 
 enum Menus{
 	START_SCREEN=0,
@@ -2066,6 +2068,7 @@ int main(void)
 		
 		render(menu,&sTime,&sDate);
 		tick(&TsState, &menu);
+		HAL_Delay(150);
   }
   /* USER CODE END 3 */
 }
@@ -2185,11 +2188,11 @@ void render(enum Menus menu, RTC_TimeTypeDef * sTime, RTC_DateTypeDef * sDate)
 				}
 				else if(timeSelection == 1)
 				{
-				
+					BSP_LCD_DrawCircle(135,156,4);
 				}
 				else
 				{
-				
+					BSP_LCD_DrawCircle(170,156,4);
 				}
 			}
 			
@@ -2239,9 +2242,10 @@ void tick(TS_StateTypeDef * TsState, enum Menus * menu)
 						else if(*menu == TIME_CONFIG)
 						{
 							timeSelect = 1;
+							config = 1;
 						}
 						
-							config = 1;
+
 					}
 					//left arrow
 					else if(TsState->X >= botIcons_w + 7 && TsState->X < botIcons_w*2 + 25)
@@ -2256,19 +2260,55 @@ void tick(TS_StateTypeDef * TsState, enum Menus * menu)
 							else if(*menu == CONFIG_SCREEN)
 							{
 								*menu = START_SCREEN;
-								HAL_Delay(120);
 								BSP_LCD_Clear(LCD_COLOR_WHITE);								
 							}
 							else if(*menu == TIME_CONFIG)
 							{
 								*menu = CONFIG_SCREEN;
-								HAL_Delay(120);
 								BSP_LCD_Clear(LCD_COLOR_WHITE);
 							}			
 						}
+						//config = 1
 						else
 						{
-							
+							if(*menu == TIME_CONFIG)
+							{
+								if(timeSelect == 1)
+								{
+									if(timeSelection == 1)
+									{
+										timeSelection = 0;
+									}
+									else if(timeSelection == 2)
+									{
+										timeSelection = 1;
+									}
+								}
+								if(clockConfig == 1)
+								{
+									if(timeSelection == 0)
+									{
+										if(second == 0)
+											second = 59;
+										else
+											second--;
+									}
+									else if(timeSelection == 1)
+									{
+										if(minute == 0)
+											minute = 59;
+										else
+											minute--;
+									}
+									else if(timeSelection == 2)
+									{
+										if(hour == 0)
+											hour = 24;
+										else
+											hour--;
+									}
+								}
+							}
 						}
 						
 					}
@@ -2281,22 +2321,59 @@ void tick(TS_StateTypeDef * TsState, enum Menus * menu)
 							if(*menu == START_SCREEN)
 							{
 								*menu = CONFIG_SCREEN;
-								HAL_Delay(120);
 								BSP_LCD_Clear(LCD_COLOR_WHITE);
 							}
 							else if(*menu == CONFIG_SCREEN)
 							{
 								*menu = TIME_CONFIG;
-								HAL_Delay(120);		
 								BSP_LCD_Clear(LCD_COLOR_WHITE);
 							}
 							else if(*menu == TIME_CONFIG)
 							{
-							
 							}			
 						}
 						else
 						{
+							if(*menu == TIME_CONFIG)
+							{
+								if(timeSelect == 1)
+								{
+									if(timeSelection == 0)
+									{
+										timeSelection = 1;
+									}
+									else if(timeSelection == 1)
+									{
+										timeSelection = 2;
+									}
+								}
+								
+								if(clockConfig == 1)
+								{
+									if(timeSelection == 0)
+									{
+										if(second == 59)
+											second = 0;
+										else
+											second++;
+									}
+									else if(timeSelection == 1)
+									{
+										if(minute == 59)
+											minute = 0;
+										else
+											minute++;
+									}
+									else if(timeSelection == 2)
+									{
+										if(hour == 24)
+											hour = 0;
+										else
+											hour++;
+									}
+								}
+								
+							}
 							
 						}
 						
@@ -2315,10 +2392,19 @@ void tick(TS_StateTypeDef * TsState, enum Menus * menu)
 						}
 						else if(*menu == TIME_CONFIG)
 						{
-						
+							if(timeSelect == 1)
+							{
+								timeSelect = 0;
+								clockConfig = 1;		
+							}
+							if(clockConfig == 1)
+							{
+								clockConfig = 0;
+								config = 0;
+							}
 						}
 						
-						config = 0;
+						//config = 0;
 						
 					}
 				}
