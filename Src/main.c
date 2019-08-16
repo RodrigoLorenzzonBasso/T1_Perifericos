@@ -1950,10 +1950,22 @@ const uint8_t botIcons_h = 48;
 const int screenW = 240;
 const int screenH = 320;
 
+int hour;
+int minute;
+int second;
+
+int pauseClock = 0;
+
+int timeSelect = 0;
+int timeSelection = 0;
+
 enum Menus{
 	START_SCREEN=0,
 	CONFIG_SCREEN=1,
+	TIME_CONFIG=2,
 }menu;
+
+uint8_t config = 0;
 
 /* USER CODE END PV */
 
@@ -1962,7 +1974,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void render(enum Menus menu,RTC_TimeTypeDef * sTime, RTC_DateTypeDef * sDate);
 void renderBottomMenu();
-void tick(TS_StateTypeDef * TsState);
+void tick(TS_StateTypeDef * TsState, enum Menus * menu);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -2053,7 +2065,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 		
 		render(menu,&sTime,&sDate);
-		tick(&TsState);
+		tick(&TsState, &menu);
   }
   /* USER CODE END 3 */
 }
@@ -2119,11 +2131,16 @@ void render(enum Menus menu, RTC_TimeTypeDef * sTime, RTC_DateTypeDef * sDate)
 	
 	renderBottomMenu();
 	
+	if(menu != TIME_CONFIG)
+		pauseClock = 0;
+	
 	if(menu == START_SCREEN)
 		{				
-			BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
+			//BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
 			
-			//BSP_LCD_DrawBitmap(screenW-4-18,4,(uint8_t*)smallArrowRight);
+			BSP_LCD_DisplayStringAtLine(3,(uint8_t*)"START SCREEN");
+			
+			BSP_LCD_DrawBitmap(screenW-4-18,4,(uint8_t*)smallArrowRight);
 			
 			HAL_RTC_GetTime(&hrtc, sTime, FORMAT_BIN);
 			HAL_RTC_GetDate(&hrtc, sDate, FORMAT_BIN);
@@ -2137,7 +2154,46 @@ void render(enum Menus menu, RTC_TimeTypeDef * sTime, RTC_DateTypeDef * sDate)
 		}
 		else if(menu == CONFIG_SCREEN)
 		{
+			BSP_LCD_DisplayStringAtLine(3,(uint8_t*)"CONFIG SCREEN");
 			
+			BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
+			BSP_LCD_DrawBitmap(screenW-4-18,4,(uint8_t*)smallArrowRight);
+		}
+		else if(menu == TIME_CONFIG)
+		{
+			BSP_LCD_DisplayStringAtLine(2,(uint8_t*)"TIME CONFIG");
+			if(pauseClock == 0)
+			{
+				HAL_RTC_GetTime(&hrtc, sTime, FORMAT_BIN);
+				HAL_RTC_GetDate(&hrtc, sDate, FORMAT_BIN);
+				pauseClock = 1;
+			}
+			
+			hour = sTime->Hours;
+			minute = sTime->Minutes;
+			second = sTime->Seconds;
+			
+			sprintf((char*)vector_hour,"%02d:%02d:%02d",hour,minute,second);
+			BSP_LCD_SetFont(&Font24);
+			BSP_LCD_DisplayStringAt(0,screenW/2,vector_hour,CENTER_MODE);
+			
+			if(timeSelect == 1)
+			{
+				if(timeSelection == 0)
+				{
+					BSP_LCD_DrawCircle(68,156,4);
+				}
+				else if(timeSelection == 1)
+				{
+				
+				}
+				else
+				{
+				
+				}
+			}
+			
+			BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
 		}
 }
 
@@ -2149,41 +2205,121 @@ void renderBottomMenu()
 	BSP_LCD_DrawBitmap(45+botIcons_w*3,screenH-botIcons_h,(uint8_t*)check);
 }
 
-void tick(TS_StateTypeDef * TsState)
+void tick(TS_StateTypeDef * TsState, enum Menus * menu)
 {
 			BSP_TS_GetState(TsState);
 			if(TsState->TouchDetected)
 			{
 				uint8_t vector[30];
 				sprintf((char*)vector,"X: %d",TsState->X);
+
+				BSP_LCD_SetFont(&Font16);
+				BSP_LCD_DisplayStringAtLine(3,vector);
+				
 				sprintf((char*)vector,"Y: %d",TsState->Y);
 				
-				BSP_LCD_DisplayStringAtLine(10,vector);
-				BSP_LCD_DisplayStringAtLine(11,vector);
+				BSP_LCD_SetFont(&Font16);
+				BSP_LCD_DisplayStringAtLine(4,vector);
 				
 				//touch on bottom menu
 				if(TsState->Y > screenH - botIcons_h - 10)
 				{
-					BSP_LCD_DisplayStringAtLine(12,(uint8_t*)"BottomIcons");
 					//gear
 					if(TsState->X >= 0 && TsState->X < botIcons_w + 7)
 					{
-						BSP_LCD_DisplayStringAtLine(13,(uint8_t*)"gear");
+						
+						if(*menu == START_SCREEN)
+						{
+						
+						}
+						else if(*menu == CONFIG_SCREEN)
+						{
+						
+						}
+						else if(*menu == TIME_CONFIG)
+						{
+							timeSelect = 1;
+						}
+						
+							config = 1;
 					}
 					//left arrow
 					else if(TsState->X >= botIcons_w + 7 && TsState->X < botIcons_w*2 + 25)
 					{
-						BSP_LCD_DisplayStringAtLine(13,(uint8_t*)"left");
+						
+						if (config == 0)
+						{
+							if(*menu == START_SCREEN)
+							{
+
+							}
+							else if(*menu == CONFIG_SCREEN)
+							{
+								*menu = START_SCREEN;
+								HAL_Delay(120);
+								BSP_LCD_Clear(LCD_COLOR_WHITE);								
+							}
+							else if(*menu == TIME_CONFIG)
+							{
+								*menu = CONFIG_SCREEN;
+								HAL_Delay(120);
+								BSP_LCD_Clear(LCD_COLOR_WHITE);
+							}			
+						}
+						else
+						{
+							
+						}
+						
 					}
 					//right arrow
 					else if(TsState->X >= botIcons_w*2 + 25 && TsState->X < botIcons_w*3 + 35)
 					{
-						BSP_LCD_DisplayStringAtLine(13,(uint8_t*)"right");
+						
+						if (config == 0)
+						{
+							if(*menu == START_SCREEN)
+							{
+								*menu = CONFIG_SCREEN;
+								HAL_Delay(120);
+								BSP_LCD_Clear(LCD_COLOR_WHITE);
+							}
+							else if(*menu == CONFIG_SCREEN)
+							{
+								*menu = TIME_CONFIG;
+								HAL_Delay(120);		
+								BSP_LCD_Clear(LCD_COLOR_WHITE);
+							}
+							else if(*menu == TIME_CONFIG)
+							{
+							
+							}			
+						}
+						else
+						{
+							
+						}
+						
 					}
 					//check
 					else if(TsState->X >= botIcons_w*3 + 35 && TsState->X < screenW)
 					{
-						BSP_LCD_DisplayStringAtLine(13,(uint8_t*)"check");
+						
+						if(*menu == START_SCREEN)
+						{
+						
+						}
+						else if(*menu == CONFIG_SCREEN)
+						{
+						
+						}
+						else if(*menu == TIME_CONFIG)
+						{
+						
+						}
+						
+						config = 0;
+						
 					}
 				}
 			}
