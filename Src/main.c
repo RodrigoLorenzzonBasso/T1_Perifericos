@@ -1842,103 +1842,7 @@ const uint8_t check[4662]=
 0xff,0xff,0xff,0xff,0xff,0xff
 };
 
-const uint8_t smallArrowLeft[702]=
-{
-0x42,0x4d,0xbe,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x36,0x00,0x00,0x00,0x28,0x00,
-0x00,0x00,0x12,0x00,0x00,0x00,0x12,0x00,0x00,0x00,0x01,0x00,0x10,0x00,0x03,0x00,
-0x00,0x00,0x88,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x1c,0xe7,0x00,0x00,
-0x8e,0x73,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xdb,0xde,
-0x00,0x00,0x00,0x00,0x00,0x00,0x79,0xce,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xfb,0xde,0x00,0x00,0x00,0x00,0x00,0x00,0x65,0x29,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xdb,0xde,0x00,0x00,0x00,0x00,0x00,0x00,0x65,0x29,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xfb,0xde,0x00,0x00,0x00,0x00,0x00,0x00,0x65,0x29,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xdb,0xde,0x00,0x00,0x00,0x00,0x00,0x00,0x65,0x29,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xfb,0xde,0x00,0x00,0x00,0x00,0x00,0x00,
-0x65,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xdb,0xde,0x00,0x00,0x00,0x00,
-0x00,0x00,0x45,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7e,0xf7,0x00,0x00,
-0x00,0x00,0x00,0x00,0x08,0x42,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0x9e,0xf7,0x00,0x00,0x00,0x00,0x00,0x00,0x08,0x42,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0x1c,0xe7,0x00,0x00,0x00,0x00,0x00,0x00,0x66,0x31,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xfc,0xe6,0x00,0x00,
-0x00,0x00,0x00,0x00,0x65,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0x1c,0xe7,0x00,0x00,0x00,0x00,0x00,0x00,0x66,0x31,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xfc,0xe6,0x00,0x00,0x00,0x00,0x00,0x00,
-0x66,0x31,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x1c,0xe7,
-0x00,0x00,0x00,0x00,0x00,0x00,0x66,0x31,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xfc,0xe6,0x00,0x00,0x00,0x00,0x00,0x00,0x65,0x29,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x1c,0xe7,0x00,0x00,0x00,0x00,
-0x00,0x00,0x7a,0xd6,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0x3d,0xef,0x00,0x00,0x6e,0x73,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
-};
 
-
-
-const uint8_t smallArrowRight[702]=
-{
-0x42,0x4d,0xbe,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x36,0x00,0x00,0x00,0x28,0x00,
-0x00,0x00,0x12,0x00,0x00,0x00,0x12,0x00,0x00,0x00,0x01,0x00,0x10,0x00,0x03,0x00,
-0x00,0x00,0x88,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x55,0xad,
-0x00,0x00,0x6a,0x52,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0x55,0xad,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0x28,0x42,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7d,0xef,0x00,0x00,0x00,0x00,0x00,0x00,
-0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7e,0xf7,
-0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0x7e,0xf7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-0x25,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7e,0xf7,0x00,0x00,0x00,0x00,
-0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0x7e,0xf7,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xbf,0xff,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-0x00,0x00,0x4d,0x6b,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x9e,0xf7,0x00,0x00,0x00,0x00,
-0x00,0x00,0x00,0x00,0x00,0x00,0x2c,0x63,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7d,0xef,0x00,0x00,
-0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x5d,0xef,
-0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0x5d,0xef,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x45,0x29,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0x5d,0xef,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x25,0x29,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0x5d,0xef,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-0x45,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x28,0x42,0x00,0x00,0x00,0x00,0x00,0x00,
-0x00,0x00,0x25,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x55,0xad,0x00,0x00,
-0x00,0x00,0x00,0x00,0x45,0x29,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0x55,0xad,0x00,0x00,0x6a,0x52,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
-0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
-};
 
 
 const uint8_t topIcons_w = 68;
@@ -1950,33 +1854,82 @@ const uint8_t botIcons_h = 48;
 const int screenW = 240;
 const int screenH = 320;
 
-int hour;
-int minute;
-int second;
+const uint8_t START_HOUR = 18;
+const uint8_t START_MINUTE = 2;
+const uint8_t START_SECOND = 0;
 
-char pauseClock = 0;
+enum State{
+    IDLE=0,
+    SELECT=1,
+    CONFIG=2,
+};
 
-char timeSelect = 0;
-char timeSelection = 0;
+enum Select{
+    TEMPERATURE=0,
+    LUMINOSITY=1,
+    T1_START_TIME=2,
+    T1_END_TIME=3,
+    T2_START_TIME=4,
+    T2_END_TIME=5,
+};
 
-char clockConfig = 0;
+enum HourMinuteSecond{
+    HOUR = 0,
+    MINUTE = 1,
+    SECOND = 2,
+};
 
-enum Menus{
-	START_SCREEN=0,
-	CONFIG_SCREEN=1,
-	TIME_CONFIG=2,
-}menu;
+struct Control{
+    enum State state;
+    enum Select select;
+    enum HourMinuteSecond hourMinuteSecond;
 
-uint8_t config = 0;
+    uint8_t startHourT1;
+    uint8_t startMinuteT1;
+    uint8_t startSecondT1;
+    uint8_t endHourT1;
+    uint8_t endMinuteT1;
+    uint8_t endSecondT1;
+
+    uint8_t startHourT2;
+    uint8_t startMinuteT2;
+    uint8_t startSecondT2;
+    uint8_t endHourT2;
+    uint8_t endMinuteT2;
+    uint8_t endSecondT2;
+
+    int currentTemp;
+    int currentUmid;
+    int currentLumi;
+
+    int thresholdTemp;
+    int thresholdUmid;
+    int thresholdLumi;
+
+    uint8_t print_vector[30]; 
+};
+
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void render(enum Menus menu,RTC_TimeTypeDef * sTime, RTC_DateTypeDef * sDate);
+
+void render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 void renderBottomMenu();
-void tick(TS_StateTypeDef * TsState, enum Menus * menu);
+void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
+
+void RTC_Render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
+void topIconsRender(struct Control * control);
+void infosMenuRender(struct Control * control);
+void selectionRender(struct Control * control);
+
+void gearTick(struct Control * control);
+void leftArrowTick(struct Control * control);
+void rightArrowTick(struct Control * control);
+void checkTick(struct Control * control);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -1993,23 +1946,54 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
 	TS_StateTypeDef TsState;
-	
-	/* configuracao da hora */
-	
-	RTC_TimeTypeDef sTime; // estrutura que receberá a hora
-	RTC_DateTypeDef sDate; // estrutura que receberá a data
-	
-	sTime.Hours = 18; //valor da hora
-	sTime.Minutes = 2; //valor dos minutos
-	sTime.Seconds = 0; //valor dos segundos
-	
-	sDate.Date = 11; //(Dia do mês de 1 a 31)
-	sDate.Month = RTC_MONTH_JANUARY; //(Mês de 1 a 12)
-	sDate.WeekDay = RTC_WEEKDAY_MONDAY; //(Dia da semana de 1 a 7)
-	sDate.Year = 16; //(Ano de 0 a 99)
+	struct Control control;
+
+	control.state = IDLE;
+	control.select = TEMPERATURE;
+
+	/* configuracao inicial do relogio */
+
+	RTC_TimeTypeDef sTime;
+	RTC_DateTypeDef sDate;
+
+	sTime.Hours = START_HOUR;
+	sTime.Minutes = START_MINUTE;
+	sTime.Seconds = START_SECOND;
+
+	sDate.Date = 1;
+	sDate.Month = RTC_MONTH_JANUARY;
+	sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+	sDate.Year = 19;
+
+	control.startHourT1 = START_HOUR;
+	control.startMinuteT1 = START_MINUTE;
+	control.startSecondT1 = START_SECOND;
+
+	control.endHourT1 = START_HOUR + 1;
+	control.endMinuteT1 = START_MINUTE;
+	control.endSecondT1 = START_SECOND;
+
+	control.startHourT2 = START_HOUR;
+	control.startMinuteT2 = START_MINUTE;
+	control.startSecondT2 = START_SECOND;
+
+	control.endHourT2 = START_HOUR + 1;
+	control.endMinuteT2 = START_MINUTE;
+	control.endSecondT2 = START_SECOND;
+
 	/* --------------------- */
-	
-	menu = START_SCREEN;
+
+	/* configuracao inicial dos valores de threshold */
+
+	control.thresholdTemp = 50;
+	control.thresholdUmid = 50;
+	control.thresholdLumi = 50;
+
+	control.currentTemp = 0;
+	control.currentUmid = 0;
+	control.currentLumi = 0;
+
+	/* --------------------- */
 
 	
   /* USER CODE END 1 */
@@ -2040,18 +2024,18 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
 	
-	BSP_LCD_Init();
-	BSP_LCD_LayerDefaultInit(LCD_BACKGROUND_LAYER,LCD_FRAME_BUFFER);
-	BSP_LCD_LayerDefaultInit(LCD_FOREGROUND_LAYER,LCD_FRAME_BUFFER);
-	BSP_LCD_SelectLayer(LCD_FOREGROUND_LAYER);
-	BSP_LCD_DisplayOn();
-	BSP_LCD_Clear(LCD_COLOR_WHITE);
-	BSP_LCD_SetTextColor(LCD_COLOR_RED);
-	BSP_TS_Init(240, 320);
-	
-	
-	HAL_RTC_SetDate(&hrtc, &sDate, FORMAT_BIN);
-	HAL_RTC_SetTime(&hrtc, &sTime, FORMAT_BIN);
+    BSP_LCD_Init();
+    BSP_LCD_LayerDefaultInit(LCD_BACKGROUND_LAYER,LCD_FRAME_BUFFER);
+    BSP_LCD_LayerDefaultInit(LCD_FOREGROUND_LAYER,LCD_FRAME_BUFFER);
+    BSP_LCD_SelectLayer(LCD_FOREGROUND_LAYER);
+    BSP_LCD_DisplayOn();
+    BSP_LCD_Clear(LCD_COLOR_WHITE);
+    BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+    BSP_TS_Init(240, 320);
+
+
+    HAL_RTC_SetDate(&hrtc, &sDate, FORMAT_BIN);
+    HAL_RTC_SetTime(&hrtc, &sTime, FORMAT_BIN);
 	
 
   /* USER CODE END 2 */
@@ -2066,9 +2050,13 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		render(menu,&sTime,&sDate);
-		tick(&TsState, &menu);
-		HAL_Delay(150);
+		BSP_LCD_Clear(LCD_COLOR_WHITE);  
+		render(&control,&sTime,&sDate);
+
+		BSP_TS_GetState(&TsState);
+		tick(&control,&TsState,&sTime,&sDate);	
+
+		HAL_Delay(100);
   }
   /* USER CODE END 3 */
 }
@@ -2127,78 +2115,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void render(enum Menus menu, RTC_TimeTypeDef * sTime, RTC_DateTypeDef * sDate)
-{
-	uint8_t vector_hour[30];
-	uint8_t vector_date[30];
-	
-	renderBottomMenu();
-	
-	if(menu != TIME_CONFIG)
-		pauseClock = 0;
-	
-	if(menu == START_SCREEN)
-		{				
-			//BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
-			
-			BSP_LCD_DisplayStringAtLine(3,(uint8_t*)"START SCREEN");
-			
-			BSP_LCD_DrawBitmap(screenW-4-18,4,(uint8_t*)smallArrowRight);
-			
-			HAL_RTC_GetTime(&hrtc, sTime, FORMAT_BIN);
-			HAL_RTC_GetDate(&hrtc, sDate, FORMAT_BIN);
-			sprintf((char*)vector_hour,"%02d:%02d:%02d",sTime->Hours,sTime->Minutes,sTime->Seconds);
-			sprintf((char*)vector_date,"%02d/%02d/20%02d", sDate->Date, sDate->Month, sDate->Month);
-			
-			BSP_LCD_SetFont(&Font16);
-			BSP_LCD_DisplayStringAtLine(5,vector_hour);
-			BSP_LCD_DisplayStringAtLine(6,vector_date);
-			
-		}
-		else if(menu == CONFIG_SCREEN)
-		{
-			BSP_LCD_DisplayStringAtLine(3,(uint8_t*)"CONFIG SCREEN");
-			
-			BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
-			BSP_LCD_DrawBitmap(screenW-4-18,4,(uint8_t*)smallArrowRight);
-		}
-		else if(menu == TIME_CONFIG)
-		{
-			BSP_LCD_DisplayStringAtLine(2,(uint8_t*)"TIME CONFIG");
-			if(pauseClock == 0)
-			{
-				HAL_RTC_GetTime(&hrtc, sTime, FORMAT_BIN);
-				HAL_RTC_GetDate(&hrtc, sDate, FORMAT_BIN);
-				pauseClock = 1;
-			}
-			
-			hour = sTime->Hours;
-			minute = sTime->Minutes;
-			second = sTime->Seconds;
-			
-			sprintf((char*)vector_hour,"%02d:%02d:%02d",hour,minute,second);
-			BSP_LCD_SetFont(&Font24);
-			BSP_LCD_DisplayStringAt(0,screenW/2,vector_hour,CENTER_MODE);
-			
-			if(timeSelect == 1)
-			{
-				if(timeSelection == 0)
-				{
-					BSP_LCD_DrawCircle(68,156,4);
-				}
-				else if(timeSelection == 1)
-				{
-					BSP_LCD_DrawCircle(135,156,4);
-				}
-				else
-				{
-					BSP_LCD_DrawCircle(170,156,4);
-				}
-			}
-			
-			BSP_LCD_DrawBitmap(4,4,(uint8_t*)smallArrowLeft);
-		}
-}
 
 void renderBottomMenu()
 {
@@ -2208,207 +2124,411 @@ void renderBottomMenu()
 	BSP_LCD_DrawBitmap(45+botIcons_w*3,screenH-botIcons_h,(uint8_t*)check);
 }
 
-void tick(TS_StateTypeDef * TsState, enum Menus * menu)
+void render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
 {
-			BSP_TS_GetState(TsState);
-			if(TsState->TouchDetected)
-			{
-				uint8_t vector[30];
-				sprintf((char*)vector,"X: %d",TsState->X);
 
-				BSP_LCD_SetFont(&Font16);
-				BSP_LCD_DisplayStringAtLine(3,vector);
-				
-				sprintf((char*)vector,"Y: %d",TsState->Y);
-				
-				BSP_LCD_SetFont(&Font16);
-				BSP_LCD_DisplayStringAtLine(4,vector);
-				
-				//touch on bottom menu
-				if(TsState->Y > screenH - botIcons_h - 10)
-				{
-					//gear
-					if(TsState->X >= 0 && TsState->X < botIcons_w + 7)
-					{
-						
-						if(*menu == START_SCREEN)
-						{
-						
-						}
-						else if(*menu == CONFIG_SCREEN)
-						{
-						
-						}
-						else if(*menu == TIME_CONFIG)
-						{
-							timeSelect = 1;
-							config = 1;
-						}
-						
+    RTC_Render(control, time, date);
 
-					}
-					//left arrow
-					else if(TsState->X >= botIcons_w + 7 && TsState->X < botIcons_w*2 + 25)
-					{
-						
-						if (config == 0)
-						{
-							if(*menu == START_SCREEN)
-							{
+    topIconsRender(control);
 
-							}
-							else if(*menu == CONFIG_SCREEN)
-							{
-								*menu = START_SCREEN;
-								BSP_LCD_Clear(LCD_COLOR_WHITE);								
-							}
-							else if(*menu == TIME_CONFIG)
-							{
-								*menu = CONFIG_SCREEN;
-								BSP_LCD_Clear(LCD_COLOR_WHITE);
-							}			
-						}
-						//config = 1
-						else
-						{
-							if(*menu == TIME_CONFIG)
-							{
-								if(timeSelect == 1)
-								{
-									if(timeSelection == 1)
-									{
-										timeSelection = 0;
-									}
-									else if(timeSelection == 2)
-									{
-										timeSelection = 1;
-									}
-								}
-								if(clockConfig == 1)
-								{
-									if(timeSelection == 0)
-									{
-										if(second == 0)
-											second = 59;
-										else
-											second--;
-									}
-									else if(timeSelection == 1)
-									{
-										if(minute == 0)
-											minute = 59;
-										else
-											minute--;
-									}
-									else if(timeSelection == 2)
-									{
-										if(hour == 0)
-											hour = 24;
-										else
-											hour--;
-									}
-								}
-							}
-						}
-						
-					}
-					//right arrow
-					else if(TsState->X >= botIcons_w*2 + 25 && TsState->X < botIcons_w*3 + 35)
-					{
-						
-						if (config == 0)
-						{
-							if(*menu == START_SCREEN)
-							{
-								*menu = CONFIG_SCREEN;
-								BSP_LCD_Clear(LCD_COLOR_WHITE);
-							}
-							else if(*menu == CONFIG_SCREEN)
-							{
-								*menu = TIME_CONFIG;
-								BSP_LCD_Clear(LCD_COLOR_WHITE);
-							}
-							else if(*menu == TIME_CONFIG)
-							{
-							}			
-						}
-						else
-						{
-							if(*menu == TIME_CONFIG)
-							{
-								if(timeSelect == 1)
-								{
-									if(timeSelection == 0)
-									{
-										timeSelection = 1;
-									}
-									else if(timeSelection == 1)
-									{
-										timeSelection = 2;
-									}
-								}
-								
-								if(clockConfig == 1)
-								{
-									if(timeSelection == 0)
-									{
-										if(second == 59)
-											second = 0;
-										else
-											second++;
-									}
-									else if(timeSelection == 1)
-									{
-										if(minute == 59)
-											minute = 0;
-										else
-											minute++;
-									}
-									else if(timeSelection == 2)
-									{
-										if(hour == 24)
-											hour = 0;
-										else
-											hour++;
-									}
-								}
-								
-							}
-							
-						}
-						
-					}
-					//check
-					else if(TsState->X >= botIcons_w*3 + 35 && TsState->X < screenW)
-					{
-						
-						if(*menu == START_SCREEN)
-						{
-						
-						}
-						else if(*menu == CONFIG_SCREEN)
-						{
-						
-						}
-						else if(*menu == TIME_CONFIG)
-						{
-							if(timeSelect == 1)
-							{
-								timeSelect = 0;
-								clockConfig = 1;		
-							}
-							if(clockConfig == 1)
-							{
-								clockConfig = 0;
-								config = 0;
-							}
-						}
-						
-						//config = 0;
-						
-					}
-				}
-			}
+    //desenhar uma linha de separacao
+
+    infosMenuRender(control);
+
+    selectionRender(control);
+
+    //linha de separacao
+
+    renderBottomMenu();
+}
+
+void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
+{
+    if(TsState->TouchDetected)
+    {
+        uint8_t vector[30];
+        sprintf((char*)vector,"X: %d",TsState->X);
+
+        BSP_LCD_SetFont(&Font16);
+        BSP_LCD_DisplayStringAtLine(3,vector);
+        
+        sprintf((char*)vector,"Y: %d",TsState->Y);
+        
+        BSP_LCD_SetFont(&Font16);
+        BSP_LCD_DisplayStringAtLine(4,vector);
+        
+        //touch on bottom menu
+        if(TsState->Y > screenH - botIcons_h - 10)
+        {
+            //gear
+            if(TsState->X >= 0 && TsState->X < botIcons_w + 7)
+            {
+                gearTick(control);
+            }
+            //left arrow
+            else if(TsState->X >= botIcons_w + 7 && TsState->X < botIcons_w*2 + 25)
+            {
+                leftArrowTick(control);
+            }
+            //right arrow
+            else if(TsState->X >= botIcons_w*2 + 25 && TsState->X < botIcons_w*3 + 35)
+            {
+                rightArrowTick(control);
+            }
+            //check
+            else if(TsState->X >= botIcons_w*3 + 35 && TsState->X < screenW)
+            {	
+                checkTick(control);
+            }
+        }
+    }
+}
+
+void infosMenuRender(struct Control * control)
+{
+   BSP_LCD_SetFont(&Font16);
+
+        //temperatura
+    if(control->currentTemp > control->thresholdTemp)
+        BSP_LCD_SetTextColor(LCD_COLOR_RED);
+    else
+        BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+
+    BSP_LCD_DisplayStringAt(25, 100,(uint8_t*)"T1: Threshold Temperature: %d \u2103 C",control->thresholdTemp);
+
+        //luminosidade
+    if(control->currentLumi > control->thresholdLumi)
+        BSP_LCD_SetTextColor(LCD_COLOR_RED);
+    else
+        BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+
+    BSP_LCD_DisplayStringAt(25, 120,(uint8_t*)"T2: Threshold Luminosity: %d lux",control->thresholdLumi);
+
+        // relogio 1
+		sprintf((char*)control->print_vector,"T3: Turns on at: %02d:%02d:%02d",control->startHourT1,control->startMinuteT1,control->startSecondT1);
+    BSP_LCD_DisplayStringAt(25, 140,control->print_vector,CENTER_MODE);
+		sprintf((char*)control->print_vector,"T3: Turns off at: %02d:%02d:%02d",control->endHourT1,control->endMinuteT1,control->endSecondT1);
+    BSP_LCD_DisplayStringAt(25, 160,control->print_vector, CENTER_MODE);
+
+        // relogio 2
+    sprintf((char*)control->print_vector,"T4: Turns on at: %02d:%02d:%02d",control->startHourT2,control->startMinuteT2,control->startSecondT2);
+    BSP_LCD_DisplayStringAt(25, 180,control->print_vector, CENTER_MODE);
+		sprintf((char*)control->print_vector,"T4: Turns off at: %02d:%02d:%02d",control->endHourT2,control->endMinuteT2,control->endSecondT2);
+    BSP_LCD_DisplayStringAt(25, 200,control->print_vector, CENTER_MODE);
+}
+
+void RTC_Render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
+{
+    HAL_RTC_GetTime(&hrtc, time, FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, date, FORMAT_BIN);
+
+    sprintf((char*)control->print_vector,"%02d:%02d:%02d",time->Hours,time->Minutes,time->Seconds);
+    BSP_LCD_SetFont(&Font16);
+    BSP_LCD_DisplayStringAt(0,0,control->print_vector,CENTER_MODE);
+}
+
+void topIconsRender(struct Control * control)
+{
+    BSP_LCD_DrawBitmap(60,20,(uint8_t*)drop);
+		sprintf((char*)control->print_vector,"%d %c",control->currentUmid,'%');
+    BSP_LCD_DisplayStringAt(60,20+topIcons_h,control->print_vector, CENTER_MODE);
+}
+
+void selectionRender(struct Control * control)
+{
+    if(control->state == SELECT)
+    {
+        if(control->select == TEMPERATURE)
+            BSP_LCD_DrawCircle(10,100,4);
+        else if(control->select == LUMINOSITY)
+            BSP_LCD_DrawCircle(10,120,4);
+        else if(control->select == T1_START_TIME)
+            BSP_LCD_DrawCircle(10,140,4);
+        else if(control->select == T1_END_TIME)
+            BSP_LCD_DrawCircle(10,160,4);
+        else if(control->select == T2_START_TIME)
+            BSP_LCD_DrawCircle(10,180,4);
+        else if(control->select == T2_END_TIME)
+            BSP_LCD_DrawCircle(10,200,4);
+
+    }
+    else if(control->state == CONFIG)
+    {
+        if(control->select == TEMPERATURE)
+            BSP_LCD_DrawCircle(10,100,4);
+        else if(control->select == LUMINOSITY)
+            BSP_LCD_DrawCircle(10,120,4);
+        else if(control->select == T1_START_TIME)
+            BSP_LCD_DrawCircle(10,140,4);
+        else if(control->select == T1_END_TIME)
+            BSP_LCD_DrawCircle(10,160,4);
+        else if(control->select == T2_START_TIME)
+            BSP_LCD_DrawCircle(10,180,4);
+        else if(control->select == T2_END_TIME)
+            BSP_LCD_DrawCircle(10,200,4);
+    }
+}
+
+void gearTick(struct Control * control)
+{
+    if(control->state == IDLE)
+        control->state = SELECT;
+    else if(control->state == SELECT)
+    {
+        control->state = CONFIG;
+
+        if(control->select == T1_START_TIME || control->select == T1_END_TIME ||
+            control->select == T2_START_TIME || control->select == T2_END_TIME)
+            {
+                control->hourMinuteSecond = HOUR;
+            }
+    }
+    else if(control->state == CONFIG)
+    {
+        if(control->select == T1_START_TIME || control->select == T1_END_TIME ||
+            control->select == T2_START_TIME || control->select == T2_END_TIME)
+            {
+                if(control->hourMinuteSecond == SECOND)
+                    control->hourMinuteSecond = HOUR;
+                else
+                    control->hourMinuteSecond++;
+            }
+        else
+            control->state = IDLE;
+    }
+}
+
+void leftArrowTick(struct Control * control)
+{
+    if(control->state == SELECT)
+    {
+        if(control->select == TEMPERATURE)
+            control->select = T2_END_TIME;
+        else
+            control->select--;
+    }
+    else if(control->state == CONFIG)
+    {
+        if(control->select == TEMPERATURE)
+            control->thresholdTemp--;
+        else if(control->select == LUMINOSITY)
+            control->thresholdLumi--;
+        else if(control->select == T1_START_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->startHourT1 == 0)
+                    control->startHourT1 = 23;
+                else
+                    control->startHourT1--;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->startMinuteT1 == 0)
+                    control->startMinuteT1 = 59;
+                else
+                    control->startMinuteT1--;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->startSecondT1 == 0)
+                    control->startSecondT1 = 59;
+                else
+                    control->startSecondT1--;
+            }
+        }
+        else if(control->select == T1_END_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->endHourT1 == 0)
+                    control->endHourT1 = 23;
+                else
+                    control->endHourT1--;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->endMinuteT1 == 0)
+                    control->endMinuteT1 = 59;
+                else
+                    control->endMinuteT1--;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->endSecondT1 == 0)
+                    control->endSecondT1 = 59;
+                else
+                    control->endSecondT1--;
+            }
+        }
+        else if(control->select == T2_START_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->startHourT2 == 0)
+                    control->startHourT2 = 23;
+                else
+                    control->startHourT2--;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->startMinuteT2 == 0)
+                    control->startMinuteT2 = 59;
+                else
+                    control->startMinuteT2--;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->startSecondT2 == 0)
+                    control->startSecondT2 = 59;
+                else
+                    control->startSecondT2--;
+            }
+        }
+        else if(control->select == T2_END_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->endHourT2 == 0)
+                    control->endHourT2 = 23;
+                else
+                    control->endHourT2--;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->endMinuteT2 == 0)
+                    control->endMinuteT2 = 59;
+                else
+                    control->endMinuteT2--;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->endSecondT2 == 0)
+                    control->endSecondT2 = 59;
+                else
+                    control->endSecondT2--;
+            }
+        }
+    }
+}
+
+void rightArrowTick(struct Control * control)
+{
+    if(control->state == SELECT)
+    {
+        if(control->select == T2_END_TIME)
+            control->select = TEMPERATURE;
+        else
+            control->select++;
+    }	
+    else if(control->state == CONFIG)
+    {
+        if(control->select == TEMPERATURE)
+            control->thresholdTemp++;
+        else if(control->select == LUMINOSITY)
+            control->thresholdLumi++;
+        else if(control->select == T1_START_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->startHourT1 == 23)
+                    control->startHourT1 = 0;
+                else
+                    control->startHourT1++;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->startMinuteT1 == 59)
+                    control->startMinuteT1 = 0;
+                else
+                    control->startMinuteT1++;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->startSecondT1 == 59)
+                    control->startSecondT1 = 0;
+                else
+                    control->startSecondT1++;
+            }
+        }
+        else if(control->select == T1_END_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->endHourT1 == 23)
+                    control->endHourT1 = 0;
+                else
+                    control->endHourT1++;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->endMinuteT1 == 59)
+                    control->endMinuteT1 = 0;
+                else
+                    control->endMinuteT1++;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->endSecondT1 == 59)
+                    control->endSecondT1 = 0;
+                else
+                    control->endSecondT1++;
+            }
+        }
+        else if(control->select == T2_START_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->startHourT2 == 23)
+                    control->startHourT2 = 0;
+                else
+                    control->startHourT2++;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->startMinuteT2 == 59)
+                    control->startMinuteT2 = 0;
+                else
+                    control->startMinuteT2++;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->startSecondT2 == 59)
+                    control->startSecondT2 = 0;
+                else
+                    control->startSecondT2++;
+            }
+        }
+        else if(control->select == T2_END_TIME)
+        {
+            if(control->hourMinuteSecond == HOUR)
+            {
+                if(control->endHourT2 == 23)
+                    control->endHourT2 = 0;
+                else
+                    control->endHourT2++;
+            }
+            else if(control->hourMinuteSecond == MINUTE)
+            {
+                if(control->endMinuteT2 == 59)
+                    control->endMinuteT2 = 0;
+                else
+                    control->endMinuteT2++;
+            }
+            else if(control->hourMinuteSecond == SECOND)
+            {
+                if(control->endSecondT2 == 59)
+                    control->endSecondT2 = 0;
+                else
+                    control->endSecondT2++;
+            }
+        }
+    }
+}
+
+void checkTick(struct Control * control)
+{
+    control->state = IDLE;
 }
 
 /* USER CODE END 4 */
