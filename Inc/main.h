@@ -197,6 +197,10 @@ void Error_Handler(void);
 #define D0_GPIO_Port GPIOD
 #define D1_Pin GPIO_PIN_15
 #define D1_GPIO_Port GPIOD
+#define SDA_Pin GPIO_PIN_2
+#define SDA_GPIO_Port GPIOG
+#define SCL_Pin GPIO_PIN_3
+#define SCL_GPIO_Port GPIOG
 #define BA0_Pin GPIO_PIN_4
 #define BA0_GPIO_Port GPIOG
 #define BA1_Pin GPIO_PIN_5

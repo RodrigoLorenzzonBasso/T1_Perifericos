@@ -64,6 +64,13 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
+#define SDA (1<<2) //PG.2 - PLACA DISCOVERY F4
+#define SCL (1<<3) //PG.3 - PLACA DISCOVERY F4
+#define SDA0 GPIOG->BSRR = 1<<(2+16)
+#define SDA1 GPIOG->BSRR = SDA
+#define SCL0 GPIOG->BSRR = 1<<(3+16)
+#define SCL1 GPIOG->BSRR = SCL
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -1843,8 +1850,6 @@ const uint8_t check[4662]=
 };
 
 
-
-
 const uint8_t topIcons_w = 68;
 const uint8_t topIcons_h = 68;
 
@@ -1917,7 +1922,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
 void render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
-void renderBottomMenu();
+void renderBottomMenu(void);
 void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 
 void RTC_Render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
@@ -1929,6 +1934,14 @@ void gearTick(struct Control * control);
 void leftArrowTick(struct Control * control);
 void rightArrowTick(struct Control * control);
 void checkTick(struct Control * control);
+
+void start_i2c(void); //I2C START
+void envia_1_i2c(void);
+void envia_0_i2c(void);
+int ack_i2c(void);
+float le_umidade(void);
+float le_temperatura(void);
+uint8_t le_byte(void);
 
 /* USER CODE END PFP */
 
@@ -2050,13 +2063,13 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		BSP_LCD_Clear(LCD_COLOR_WHITE);  
+		BSP_LCD_Clear(LCD_COLOR_WHITE);
 		render(&control,&sTime,&sDate);
 
 		BSP_TS_GetState(&TsState);
 		tick(&control,&TsState,&sTime,&sDate);	
 
-		HAL_Delay(100);
+		HAL_Delay(200);
   }
   /* USER CODE END 3 */
 }
@@ -2116,7 +2129,7 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void renderBottomMenu()
+void renderBottomMenu(void)
 {
 	BSP_LCD_DrawBitmap(5,screenH-botIcons_h,(uint8_t*)gear);
 	BSP_LCD_DrawBitmap(20+botIcons_w,screenH-botIcons_h,(uint8_t*)leftArrow);
@@ -2161,7 +2174,7 @@ void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef *
         if(TsState->Y > screenH - botIcons_h - 10)
         {
             //gear
-            if(TsState->X >= 0 && TsState->X < botIcons_w + 7)
+            if(TsState->X < botIcons_w + 7)
             {
                 gearTick(control);
             }
@@ -2186,7 +2199,7 @@ void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef *
 
 void infosMenuRender(struct Control * control)
 {
-   BSP_LCD_SetFont(&Font16);
+   BSP_LCD_SetFont(&Font12);
 
         //temperatura
     if(control->currentTemp > control->thresholdTemp)
@@ -2194,7 +2207,9 @@ void infosMenuRender(struct Control * control)
     else
         BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
-    BSP_LCD_DisplayStringAt(25, 100,(uint8_t*)"T1: Threshold Temperature: %d \u2103 C",control->thresholdTemp);
+		int temp = control->thresholdTemp;
+		sprintf((char*)control->print_vector,"T1: Temperature: %dC",temp);
+    BSP_LCD_DisplayStringAt(25, 100,control->print_vector, LEFT_MODE);
 
         //luminosidade
     if(control->currentLumi > control->thresholdLumi)
@@ -2202,19 +2217,21 @@ void infosMenuRender(struct Control * control)
     else
         BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
-    BSP_LCD_DisplayStringAt(25, 120,(uint8_t*)"T2: Threshold Luminosity: %d lux",control->thresholdLumi);
+		int lumi = control->thresholdLumi;
+		sprintf((char*)control->print_vector,"T2: Luminosity: %d lux",lumi);
+    BSP_LCD_DisplayStringAt(25, 120,control->print_vector, LEFT_MODE);
 
         // relogio 1
 		sprintf((char*)control->print_vector,"T3: Turns on at: %02d:%02d:%02d",control->startHourT1,control->startMinuteT1,control->startSecondT1);
-    BSP_LCD_DisplayStringAt(25, 140,control->print_vector,CENTER_MODE);
+    BSP_LCD_DisplayStringAt(25, 140,control->print_vector,LEFT_MODE);
 		sprintf((char*)control->print_vector,"T3: Turns off at: %02d:%02d:%02d",control->endHourT1,control->endMinuteT1,control->endSecondT1);
-    BSP_LCD_DisplayStringAt(25, 160,control->print_vector, CENTER_MODE);
+    BSP_LCD_DisplayStringAt(25, 160,control->print_vector, LEFT_MODE);
 
         // relogio 2
     sprintf((char*)control->print_vector,"T4: Turns on at: %02d:%02d:%02d",control->startHourT2,control->startMinuteT2,control->startSecondT2);
-    BSP_LCD_DisplayStringAt(25, 180,control->print_vector, CENTER_MODE);
+    BSP_LCD_DisplayStringAt(25, 180,control->print_vector, LEFT_MODE);
 		sprintf((char*)control->print_vector,"T4: Turns off at: %02d:%02d:%02d",control->endHourT2,control->endMinuteT2,control->endSecondT2);
-    BSP_LCD_DisplayStringAt(25, 200,control->print_vector, CENTER_MODE);
+    BSP_LCD_DisplayStringAt(25, 200,control->print_vector, LEFT_MODE);
 }
 
 void RTC_Render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
@@ -2529,6 +2546,195 @@ void rightArrowTick(struct Control * control)
 void checkTick(struct Control * control)
 {
     control->state = IDLE;
+}
+
+
+void start_i2c(void) //I2C START
+{
+	SCL0;
+	SDA1;
+	HAL_Delay(1);
+	SCL1;
+	HAL_Delay(1);
+	SDA0;
+	HAL_Delay(1);
+	SCL0;
+	HAL_Delay(1);
+	SCL1;
+	HAL_Delay(1);
+	SDA1;
+	HAL_Delay(1);
+	SCL0;
+	HAL_Delay(1);
+	SDA0;
+	HAL_Delay(1);
+}
+
+
+
+void envia_1_i2c(void) //Envia 1 pelo I2C
+{
+	SDA1;
+	HAL_Delay(1);//1 milisegundo
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+}
+
+
+
+void envia_0_i2c(void) //Envia 0 pelo I2C
+{
+	SDA0;
+	HAL_Delay(1);//1 milisegundo
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+}
+
+
+uint8_t le_byte(void)
+{
+	uint8_t rByte = 0;
+	
+	GPIO_InitTypeDef GPIO_InitStruct;
+	GPIO_InitStruct.Pin = GPIO_PIN_2; // SDA => PG.2
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT; //FAZ SDA COMO ENTRADA
+	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+	
+	for(int i = 0; i < 8; i++)
+	{
+		SCL1;
+		HAL_Delay(1);//1 milisegundo
+		rByte = rByte + (HAL_GPIO_ReadPin(GPIOG,SDA)<<(7-i)); //L^E O PINO
+		SCL0;
+		HAL_Delay(1);//1 milisegundo
+	}
+	
+	
+	GPIO_InitStruct.Pin = GPIO_PIN_2; // SDA => PG.2
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP; //FAZ SDA COMO SA´IDA
+	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+	return rByte; //se 0 ok, se 1 erro
+}
+
+int ack_i2c(void)
+{
+	int x;
+	GPIO_InitTypeDef GPIO_InitStruct;
+	GPIO_InitStruct.Pin = GPIO_PIN_2; // SDA => PG.2
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT; //FAZ SDA COMO ENTRADA
+	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	x = HAL_GPIO_ReadPin(GPIOG,SDA); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	GPIO_InitStruct.Pin = GPIO_PIN_2; // SDA => PG.2
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP; //FAZ SDA COMO SA´IDA
+	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+	return x; //se 0 ok, se 1 erro
+}
+
+float le_umidade(void)
+{
+	int erro;
+	uint8_t byte1,byte2;
+	uint16_t umidade;
+	
+	start_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_1_i2c();
+	envia_0_i2c();
+	envia_1_i2c();
+	erro = ack_i2c(); // 0 - ok , 1 - problema
+	
+	if(erro == 1)
+	{
+		
+	}
+	
+	HAL_Delay(80);
+	
+	// a umidade eh composta de 12 bits, mais 4 bits em 0 no comeco totalizando 2 bytes
+	// ler eles e enviar um ack(0) entre cada um
+	
+	byte1 = le_byte(); 
+	
+	envia_0_i2c();
+	
+	byte1 = le_byte();
+	
+	envia_0_i2c();
+	
+	// concater os bytes, os 4 primeiros bits sao 0 -> fazer and com 0x0f (00001111)
+	
+	umidade = ((byte1 & 0x0f)<<8) + byte2;
+	
+	float fUmidade = -2.0468 + 0.0367 * umidade - 0.0000015955 * (umidade * umidade);
+	
+	return fUmidade;
+	
+}
+
+float le_temperatura(void)
+{
+	int erro;
+	uint8_t byte1,byte2;
+	uint16_t temperatura;
+	
+	start_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_0_i2c();
+	envia_1_i2c();
+	envia_1_i2c();
+	erro = ack_i2c(); // 0 - ok , 1 - problema
+	
+	if(erro == 1)
+	{
+		
+	}
+	
+	HAL_Delay(320);
+	
+	// a umidade eh composta de 12 bits, mais 4 bits em 0 no comeco totalizando 2 bytes
+	// ler eles e enviar um ack(0) entre cada um
+	
+	byte1 = le_byte(); 
+	
+	envia_0_i2c();
+	
+	byte1 = le_byte();
+	
+	envia_0_i2c();
+	
+	// concater os bytes, os 4 primeiros bits sao 0 -> fazer and com 0x0f (00001111)
+	
+	temperatura = ((byte1 & 0x0f)<<8) + byte2;
+	
+	float fTemperatura = -39.6 + (0.01 * temperatura);
+	
+	return fTemperatura;
+	
 }
 
 /* USER CODE END 4 */
