@@ -3230,6 +3230,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	
+	//topIconsRender(&control);
+	//renderBottomMenu();
+	
   while (1)
   {
 		
@@ -3237,10 +3240,27 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		BSP_LCD_Clear(LCD_COLOR_WHITE);
-		render(&control,&sTime,&sDate);
+		//BSP_LCD_Clear(LCD_COLOR_WHITE);
+		
+		RTC_Render(&control, &sTime, &sDate);
 
-		readSensors(&control);
+    topIconsRender(&control);
+
+    infosMenuRender(&control);
+
+    selectionRender(&control);
+
+    renderBottomMenu();
+		
+		
+		if(control.state != CONFIG)
+		{
+			readSensors(&control);
+		}
+		else
+		{
+			HAL_Delay(50);
+		}
 		BSP_TS_GetState(&TsState);
 		tick(&control,&TsState,&sTime,&sDate);
 		
