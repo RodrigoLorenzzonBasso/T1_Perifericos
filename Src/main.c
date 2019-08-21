@@ -3107,6 +3107,7 @@ void rightArrowTick(struct Control * control);
 void checkTick(struct Control * control);
 
 void start_i2c(void); //I2C START
+void stop_i2c(void);
 void envia_1_i2c(void);
 void envia_0_i2c(void);
 int ack_i2c(void);
@@ -3234,13 +3235,27 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		BSP_LCD_Clear(LCD_COLOR_WHITE);
+		/*BSP_LCD_Clear(LCD_COLOR_WHITE);
 		render(&control,&sTime,&sDate);
 
 		BSP_TS_GetState(&TsState);
 		tick(&control,&TsState,&sTime,&sDate);	
 
-		HAL_Delay(200);
+		HAL_Delay(200);*/
+		
+		float umi = le_umidade();
+		
+		uint8_t print[30];
+		sprintf((char*)print,"Umid: %f",umi);
+		
+		BSP_LCD_DisplayStringAtLine(1,print);
+		
+		float temp = le_temperatura();
+		
+		sprintf((char*)print,"Temp: %f",temp);
+		
+		BSP_LCD_DisplayStringAtLine(2,print);
+		
   }
   /* USER CODE END 3 */
 }
@@ -3776,8 +3791,17 @@ void start_i2c(void) //I2C START
 	HAL_Delay(1);
 }
 
-
-
+void stop_i2c(void) //I2C STOP
+{
+SDA0;
+HAL_Delay(1);//1 milisegundo
+SCL0;
+HAL_Delay(1);//1 milisegundo
+SCL1;
+HAL_Delay(1);//1 milisegundo
+SDA1;
+HAL_Delay(1);//1 milisegundo
+}
 void envia_1_i2c(void) //Envia 1 pelo I2C
 {
 	SDA1;
@@ -3812,14 +3836,53 @@ uint8_t le_byte(void)
 	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
 	HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 	
-	for(int i = 0; i < 8; i++)
-	{
-		SCL1;
-		HAL_Delay(1);//1 milisegundo
-		rByte = rByte + (HAL_GPIO_ReadPin(GPIOG,SDA)<<(7-i)); //L^E O PINO
-		SCL0;
-		HAL_Delay(1);//1 milisegundo
-	}
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(7)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(6)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(5)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(4)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(3)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(2)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)<<(1)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
+	
+	SCL1;
+	HAL_Delay(1);//1 milisegundo
+	rByte = rByte | (HAL_GPIO_ReadPin(GPIOG,SDA)); //L^E O PINO
+	SCL0;
+	HAL_Delay(1);//1 milisegundo
 	
 	
 	GPIO_InitStruct.Pin = GPIO_PIN_2; // SDA => PG.2
@@ -3854,9 +3917,9 @@ int ack_i2c(void)
 
 float le_umidade(void)
 {
-	int erro;
-	uint8_t byte1,byte2;
-	uint16_t umidade;
+	int erro=0;
+	uint8_t byte1,byte2 = 0;
+	uint16_t umidade = 0;
 	
 	start_i2c();
 	envia_0_i2c();
@@ -3888,11 +3951,22 @@ float le_umidade(void)
 	
 	envia_0_i2c();
 	
+	
 	// concater os bytes, os 4 primeiros bits sao 0 -> fazer and com 0x0f (00001111)
 	
-	umidade = ((byte1 & 0x0f)<<8) + byte2;
+	uint16_t byteMS = (byte1 & 0x0f) << 8;
 	
-	float fUmidade = -2.0468 + 0.0367 * umidade - 0.0000015955 * (umidade * umidade);
+	umidade = byteMS | byte2;
+	
+	uint8_t print[30];
+	sprintf((char*)print,"Root: %d",umidade);
+		
+	BSP_LCD_DisplayStringAtLine(8,print);
+	
+	float fUmidade = -2.0468 + (0.0367 * umidade) - ((0.0000015955) * (umidade * umidade));
+	
+	sprintf((char*)print,"fUmi: %f",fUmidade);
+	BSP_LCD_DisplayStringAtLine(12,print);
 	
 	return fUmidade;
 	
@@ -3900,9 +3974,9 @@ float le_umidade(void)
 
 float le_temperatura(void)
 {
-	int erro;
-	uint8_t byte1,byte2;
-	uint16_t temperatura;
+	int erro = 0;
+	uint8_t byte1,byte2 = 0;
+	uint16_t temperatura = 0;
 	
 	start_i2c();
 	envia_0_i2c();
