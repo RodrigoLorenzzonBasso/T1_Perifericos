@@ -3098,7 +3098,7 @@ void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef *
 
 void RTC_Render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 void topIconsRender(struct Control * control);
-void infosMenuRender(struct Control * control);
+void infosMenuRender(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 void selectionRender(struct Control * control);
 
 void gearTick(struct Control * control);
@@ -3107,6 +3107,8 @@ void rightArrowTick(struct Control * control);
 void checkTick(struct Control * control);
 
 void readSensors(struct Control * control);
+uint8_t clockTest1(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
+uint8_t clockTest2(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 
 void start_i2c(void); //I2C START
 void stop_i2c(void);
@@ -3246,20 +3248,20 @@ int main(void)
 
     topIconsRender(&control);
 
-    infosMenuRender(&control);
+    infosMenuRender(&control, &sTime, &sDate);
 
     selectionRender(&control);
 
     renderBottomMenu();
 		
 		
-		if(control.state != CONFIG)
+		if(control.state == IDLE)
 		{
-			readSensors(&control);
+			//readSensors(&control);
 		}
 		else
 		{
-			HAL_Delay(50);
+			HAL_Delay(125);
 		}
 		BSP_TS_GetState(&TsState);
 		tick(&control,&TsState,&sTime,&sDate);
@@ -3338,7 +3340,7 @@ void render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * 
 
     topIconsRender(control);
 
-    infosMenuRender(control);
+    infosMenuRender(control, time, date);
 
     selectionRender(control);
 
@@ -3376,51 +3378,83 @@ void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef *
     }
 }
 
-void infosMenuRender(struct Control * control)
+void infosMenuRender(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
 {
 		BSP_LCD_SetFont(&Font12);
 
         //temperatura
     if(control->currentTemp > control->thresholdTemp)
         BSP_LCD_SetTextColor(LCD_COLOR_RED);
+				//chamar funcao q liga coisas
     else
         BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
 		int temp = control->thresholdTemp;
 		sprintf((char*)control->print_vector,"T1: Temperature: %02dC",temp);
     BSP_LCD_DisplayStringAt(25, 115,control->print_vector, LEFT_MODE);
+		
+		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
         //luminosidade
     if(control->currentLumi > control->thresholdLumi)
+		{
         BSP_LCD_SetTextColor(LCD_COLOR_RED);
+				//chamar funcao q liga coisas
+		}
     else
-        BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		{
+				BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		}  
 
 		int lumi = control->thresholdLumi;
-		sprintf((char*)control->print_vector,"T2: Luminosity: %dlux",lumi);
+		sprintf((char*)control->print_vector,"T2: Luminosity: %2dlux",lumi);
     BSP_LCD_DisplayStringAt(25, 135,control->print_vector, LEFT_MODE);
+		
+		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		
+		if(clockTest1(control,time,date) == 1)
+		{
+			BSP_LCD_SetTextColor(LCD_COLOR_RED);
+		}
+		else
+		{
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		}
 
         // relogio 1
 		sprintf((char*)control->print_vector,"T3: Turns on at: %02d:%02d:%02d",control->startHourT1,control->startMinuteT1,control->startSecondT1);
     BSP_LCD_DisplayStringAt(25, 155,control->print_vector,LEFT_MODE);
 		sprintf((char*)control->print_vector,"T3: Turns off at: %02d:%02d:%02d",control->endHourT1,control->endMinuteT1,control->endSecondT1);
     BSP_LCD_DisplayStringAt(25, 175,control->print_vector, LEFT_MODE);
-
+		
+		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		
+		if(clockTest2(control,time,date) == 1)
+		{
+			BSP_LCD_SetTextColor(LCD_COLOR_RED);
+		}
+		else
+		{
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		}
+			
         // relogio 2
     sprintf((char*)control->print_vector,"T4: Turns on at: %02d:%02d:%02d",control->startHourT2,control->startMinuteT2,control->startSecondT2);
     BSP_LCD_DisplayStringAt(25, 195,control->print_vector, LEFT_MODE);
 		sprintf((char*)control->print_vector,"T4: Turns off at: %02d:%02d:%02d",control->endHourT2,control->endMinuteT2,control->endSecondT2);
     BSP_LCD_DisplayStringAt(25, 215,control->print_vector, LEFT_MODE);
 		
+		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+		
 		
 		if(control->state == IDLE)
 		{
-			sprintf((char*)control->print_vector,"INFO");
+			sprintf((char*)control->print_vector,"INFO          ");
 			BSP_LCD_DisplayStringAt(15,240,control->print_vector, LEFT_MODE);
 		}
 		else if(control->state == SELECT)
 		{
-			sprintf((char*)control->print_vector,"SELECT");
+			sprintf((char*)control->print_vector,"SELECT         ");
 			BSP_LCD_DisplayStringAt(15,240,control->print_vector, LEFT_MODE);
 		}
 		else if(control->state == CONFIG)
@@ -3433,17 +3467,17 @@ void infosMenuRender(struct Control * control)
             {
                 if(control->hourMinuteSecond == HOUR)
 								{
-									sprintf((char*)control->print_vector,"HOUR");
+									sprintf((char*)control->print_vector,"HOUR   ");
 									BSP_LCD_DisplayStringAt(160,240,control->print_vector, LEFT_MODE);
 								}
 								else if(control->hourMinuteSecond == MINUTE)
 								{
-									sprintf((char*)control->print_vector,"MINUTE");
+									sprintf((char*)control->print_vector,"MINUTE  ");
 									BSP_LCD_DisplayStringAt(160,240,control->print_vector, LEFT_MODE);
 								}
 								else if(control->hourMinuteSecond == SECOND)
 								{
-									sprintf((char*)control->print_vector,"SECOND");
+									sprintf((char*)control->print_vector,"SECOND  ");
 									BSP_LCD_DisplayStringAt(160,240,control->print_vector, LEFT_MODE);
 								}
             }	
@@ -3480,18 +3514,71 @@ void selectionRender(struct Control * control)
     if(control->state == SELECT)
     {
         if(control->select == TEMPERATURE)
-            BSP_LCD_DrawCircle(10,120,4);
+				{
+          BSP_LCD_DrawCircle(10,120,4);
+					BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+					BSP_LCD_DrawCircle(10,140,4);
+					BSP_LCD_DrawCircle(10,160,4);
+					BSP_LCD_DrawCircle(10,180,4);
+					BSP_LCD_DrawCircle(10,200,4);
+					BSP_LCD_DrawCircle(10,220,4);	
+					BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+				}
         else if(control->select == LUMINOSITY)
-            BSP_LCD_DrawCircle(10,140,4);
+				{
+					BSP_LCD_DrawCircle(10,140,4);
+					BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+					BSP_LCD_DrawCircle(10,120,4);
+					BSP_LCD_DrawCircle(10,160,4);
+					BSP_LCD_DrawCircle(10,180,4);
+					BSP_LCD_DrawCircle(10,200,4);
+					BSP_LCD_DrawCircle(10,220,4);	
+					BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+				} 
         else if(control->select == T1_START_TIME)
-            BSP_LCD_DrawCircle(10,160,4);
+				{
+					BSP_LCD_DrawCircle(10,160,4);
+					BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+					BSP_LCD_DrawCircle(10,120,4);
+					BSP_LCD_DrawCircle(10,140,4);
+					BSP_LCD_DrawCircle(10,180,4);
+					BSP_LCD_DrawCircle(10,200,4);
+					BSP_LCD_DrawCircle(10,220,4);	
+					BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+				} 
         else if(control->select == T1_END_TIME)
-            BSP_LCD_DrawCircle(10,180,4);
+				{
+					BSP_LCD_DrawCircle(10,180,4);
+					BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+					BSP_LCD_DrawCircle(10,120,4);
+					BSP_LCD_DrawCircle(10,140,4);
+					BSP_LCD_DrawCircle(10,160,4);
+					BSP_LCD_DrawCircle(10,200,4);
+					BSP_LCD_DrawCircle(10,220,4);	
+					BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+				}   
         else if(control->select == T2_START_TIME)
-            BSP_LCD_DrawCircle(10,200,4);
+				{
+					BSP_LCD_DrawCircle(10,200,4);
+					BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+					BSP_LCD_DrawCircle(10,120,4);
+					BSP_LCD_DrawCircle(10,140,4);
+					BSP_LCD_DrawCircle(10,160,4);
+					BSP_LCD_DrawCircle(10,180,4);
+					BSP_LCD_DrawCircle(10,220,4);	
+					BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+				}    
         else if(control->select == T2_END_TIME)
-            BSP_LCD_DrawCircle(10,220,4);
-
+				{
+					BSP_LCD_DrawCircle(10,220,4);
+					BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+					BSP_LCD_DrawCircle(10,120,4);
+					BSP_LCD_DrawCircle(10,140,4);
+					BSP_LCD_DrawCircle(10,160,4);
+					BSP_LCD_DrawCircle(10,180,4);
+					BSP_LCD_DrawCircle(10,200,4);	
+					BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+				}
     }
     else if(control->state == CONFIG)
     {
@@ -3775,6 +3862,14 @@ void checkTick(struct Control * control)
 		}
 		else
 			control->state = IDLE;
+			BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+			BSP_LCD_DrawCircle(10,120,4);
+			BSP_LCD_DrawCircle(10,140,4);
+			BSP_LCD_DrawCircle(10,160,4);
+			BSP_LCD_DrawCircle(10,180,4);
+			BSP_LCD_DrawCircle(10,200,4);
+			BSP_LCD_DrawCircle(10,220,4);	
+			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 }
 
 
@@ -3978,6 +4073,17 @@ void readSensors(struct Control * control)
 	control->currentTemp = le_temperatura();
 	control->currentUmid = le_umidade();
 }
+uint8_t clockTest1(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
+{
+	HAL_RTC_GetTime(&hrtc, time, FORMAT_BIN);
+	HAL_RTC_GetDate(&hrtc, date, FORMAT_BIN);
+	
+	
+}
+uint8_t clockTest2(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
+{
+}
+
 /* USER CODE END 4 */
 
 /**
