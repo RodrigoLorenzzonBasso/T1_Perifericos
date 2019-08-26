@@ -40,6 +40,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "dma2d.h"
 #include "i2c.h"
 #include "ltdc.h"
@@ -3081,6 +3082,12 @@ struct Control{
     int thresholdTemp;
     int thresholdUmid;
     int thresholdLumi;
+		
+		uint8_t tempFlag;
+		uint8_t lumiFlag;
+		uint8_t umidFlag;
+		uint8_t T1Flag;
+		uint8_t T2Flag;
 
     uint8_t print_vector[30]; 
 };
@@ -3092,7 +3099,6 @@ struct Control{
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 
-void render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 void renderBottomMenu(void);
 void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
 
@@ -3106,9 +3112,11 @@ void leftArrowTick(struct Control * control);
 void rightArrowTick(struct Control * control);
 void checkTick(struct Control * control);
 
+void setFlags(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
+void powerOn(struct Control * control);
+
 void readSensors(struct Control * control);
-uint8_t clockTest1(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
-uint8_t clockTest2(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTypeDef * date);
+uint8_t clockTest(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date, int sel);
 
 void start_i2c(void); //I2C START
 void stop_i2c(void);
@@ -3139,6 +3147,12 @@ int main(void)
 
 	control.state = IDLE;
 	control.select = TEMPERATURE;
+	control.tempFlag = 0;
+	control.lumiFlag = 0;
+	control.umidFlag = 0;
+	control.T1Flag = 0;
+	control.T2Flag = 0;
+	
 
 	/* configuracao inicial do relogio */
 
@@ -3211,6 +3225,7 @@ int main(void)
   MX_SPI5_Init();
   MX_FMC_Init();
   MX_RTC_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 	
     BSP_LCD_Init();
@@ -3242,27 +3257,29 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		
-		//BSP_LCD_Clear(LCD_COLOR_WHITE);
 		
 		RTC_Render(&control, &sTime, &sDate);
-
     topIconsRender(&control);
-
     infosMenuRender(&control, &sTime, &sDate);
-
     selectionRender(&control);
-
     renderBottomMenu();
 		
+		setFlags(&control, &sTime, &sDate);
+		powerOn(&control);
 		
 		if(control.state == IDLE)
 		{
-			//readSensors(&control);
+			readSensors(&control);
+		}
+		else if(control.state == SELECT)
+		{
+			HAL_Delay(275);
 		}
 		else
 		{
-			HAL_Delay(125);
+			HAL_Delay(200);
 		}
+		
 		BSP_TS_GetState(&TsState);
 		tick(&control,&TsState,&sTime,&sDate);
 		
@@ -3325,26 +3342,40 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+void setFlags(struct Control * control,  RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
+{
+	if(control->currentTemp > control->thresholdTemp)
+		control->tempFlag = 1;
+	else
+		control->tempFlag = 0;
+	
+	if(control->currentLumi > control->thresholdLumi)
+		control->lumiFlag = 1;
+	else
+		control->lumiFlag = 0;
+	
+	if(control->currentUmid > control->thresholdUmid)
+		control->umidFlag = 1;
+	else
+		control->umidFlag = 0;
+	
+	if(clockTest(control,time,date,1) == 1)
+		control->T1Flag = 1;
+	else
+		control->T1Flag = 0;
+	
+	if(clockTest(control,time,date,2))
+		control->T2Flag = 1;
+	else
+		control->T2Flag = 0;
+}
+
 void renderBottomMenu(void)
 {
 	BSP_LCD_DrawBitmap(5,screenH-botIcons_h,(uint8_t*)gear);
 	BSP_LCD_DrawBitmap(20+botIcons_w,screenH-botIcons_h,(uint8_t*)leftArrow);
 	BSP_LCD_DrawBitmap(35+botIcons_w*2,screenH-botIcons_h,(uint8_t*)rightArrow);
 	BSP_LCD_DrawBitmap(45+botIcons_w*3,screenH-botIcons_h,(uint8_t*)check);
-}
-
-void render(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
-{
-
-    RTC_Render(control, time, date);
-
-    topIconsRender(control);
-
-    infosMenuRender(control, time, date);
-
-    selectionRender(control);
-
-    renderBottomMenu();
 }
 
 void tick(struct Control * control, TS_StateTypeDef * TsState, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
@@ -3383,9 +3414,8 @@ void infosMenuRender(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTy
 		BSP_LCD_SetFont(&Font12);
 
         //temperatura
-    if(control->currentTemp > control->thresholdTemp)
+    if(control->tempFlag)
         BSP_LCD_SetTextColor(LCD_COLOR_RED);
-				//chamar funcao q liga coisas
     else
         BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
@@ -3396,15 +3426,10 @@ void infosMenuRender(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTy
 		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 
         //luminosidade
-    if(control->currentLumi > control->thresholdLumi)
-		{
+    if(control->lumiFlag)
         BSP_LCD_SetTextColor(LCD_COLOR_RED);
-				//chamar funcao q liga coisas
-		}
     else
-		{
-				BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-		}  
+				BSP_LCD_SetTextColor(LCD_COLOR_BLACK); 
 
 		int lumi = control->thresholdLumi;
 		sprintf((char*)control->print_vector,"T2: Luminosity: %2dlux",lumi);
@@ -3412,14 +3437,10 @@ void infosMenuRender(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTy
 		
 		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 		
-		if(clockTest1(control,time,date) == 1)
-		{
+		if(control->T1Flag)
 			BSP_LCD_SetTextColor(LCD_COLOR_RED);
-		}
 		else
-		{
 			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-		}
 
         // relogio 1
 		sprintf((char*)control->print_vector,"T3: Turns on at: %02d:%02d:%02d",control->startHourT1,control->startMinuteT1,control->startSecondT1);
@@ -3429,14 +3450,10 @@ void infosMenuRender(struct Control * control,RTC_TimeTypeDef * time, RTC_DateTy
 		
 		BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
 		
-		if(clockTest2(control,time,date) == 1)
-		{
+		if(control->T2Flag)
 			BSP_LCD_SetTextColor(LCD_COLOR_RED);
-		}
 		else
-		{
 			BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-		}
 			
         // relogio 2
     sprintf((char*)control->print_vector,"T4: Turns on at: %02d:%02d:%02d",control->startHourT2,control->startMinuteT2,control->startSecondT2);
@@ -3600,7 +3617,10 @@ void selectionRender(struct Control * control)
 void gearTick(struct Control * control)
 {
     if(control->state == IDLE)
-        control->state = SELECT;
+		{
+			control->state = SELECT;
+			control->select = TEMPERATURE;
+		}
     else if(control->state == SELECT)
     {
         control->state = CONFIG;
@@ -4073,17 +4093,87 @@ void readSensors(struct Control * control)
 	control->currentTemp = le_temperatura();
 	control->currentUmid = le_umidade();
 }
-uint8_t clockTest1(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
+uint8_t clockTest(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date, int sel)
 {
 	HAL_RTC_GetTime(&hrtc, time, FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, date, FORMAT_BIN);
 	
+	int secondsStart = 0;
+	int secondsEnd = 0;
+	int secondsCurrent = 0;
+	
+	secondsCurrent += time->Hours * 3600;
+	secondsCurrent += time->Minutes * 60;
+	secondsCurrent += time->Seconds;
+	
+	if(sel == 1)
+	{
+		secondsStart += control->startHourT1 * 3600;
+		secondsStart += control->startMinuteT1 * 60;
+		secondsStart += control->startSecondT1;
+		
+		secondsEnd += control->endHourT1 * 3600;
+		secondsEnd += control->endMinuteT1 * 60;
+		secondsEnd += control->endSecondT1;
+	}
+	else if(sel == 2)
+	{
+		secondsStart += control->startHourT2 * 3600;
+		secondsStart += control->startMinuteT2 * 60;
+		secondsStart += control->startSecondT2;
+		
+		secondsEnd += control->endHourT2 * 3600;
+		secondsEnd += control->endMinuteT2 * 60;
+		secondsEnd += control->endSecondT2;
+	}
+	
+	if(secondsEnd < secondsStart)
+		return 0;
+	
+	if(secondsCurrent >= secondsStart && secondsCurrent < secondsEnd)
+		return 1;
+	else
+		return 0;
+}
+void powerOn(struct Control * control)
+{
+	if(control->tempFlag)
+	{
+		HAL_GPIO_WritePin(GPIOE,LED1_Pin,GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOE,LED1_Pin,GPIO_PIN_RESET);
+	}
+	
+	if(control->lumiFlag)
+	{
+		HAL_GPIO_WritePin(GPIOE,LED2_Pin,GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOE,LED2_Pin,GPIO_PIN_RESET);
+	}
+	
+	if(control->T1Flag)
+	{
+		HAL_GPIO_WritePin(GPIOE,LED3_Pin,GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOE,LED3_Pin,GPIO_PIN_RESET);
+	}
+	
+	if(control->T2Flag)
+	{
+		HAL_GPIO_WritePin(GPIOE,LED4_Pin,GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOE,LED4_Pin,GPIO_PIN_RESET);
+	}
 	
 }
-uint8_t clockTest2(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date)
-{
-}
-
 /* USER CODE END 4 */
 
 /**
