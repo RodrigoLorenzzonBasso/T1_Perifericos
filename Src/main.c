@@ -4092,6 +4092,20 @@ void readSensors(struct Control * control)
 {
 	control->currentTemp = le_temperatura();
 	control->currentUmid = le_umidade();
+	
+	uint16_t X;
+	
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,100);
+	X = HAL_ADC_GetValue(&hadc1); //LEITURA DO CANAL 5
+	HAL_ADC_Stop(&hadc1);
+	
+	//int aux = 4095 - X;
+	//int k = aux / 243; // valor lido no luximetro
+	// x/k lux
+	
+	control->currentLumi = (4095-X)/((4095-X)/243);
+	
 }
 uint8_t clockTest(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date, int sel)
 {
