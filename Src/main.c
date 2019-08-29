@@ -3188,9 +3188,9 @@ int main(void)
 
 	/* configuracao inicial dos valores de threshold */
 
-	control.thresholdTemp = 50;
+	control.thresholdTemp = 30;
 	control.thresholdUmid = 50;
-	control.thresholdLumi = 50;
+	control.thresholdLumi = 150;
 
 	control.currentTemp = 0;
 	control.currentUmid = 0;
@@ -3269,15 +3269,15 @@ int main(void)
 		
 		if(control.state == IDLE)
 		{
-			readSensors(&control);
+			//readSensors(&control);
 		}
 		else if(control.state == SELECT)
 		{
-			HAL_Delay(275);
+			HAL_Delay(175);
 		}
 		else
 		{
-			HAL_Delay(200);
+			HAL_Delay(100);
 		}
 		
 		BSP_TS_GetState(&TsState);
@@ -3521,8 +3521,8 @@ void topIconsRender(struct Control * control)
 	BSP_LCD_DisplayStringAt(103,20+topIcons_h,control->print_vector, LEFT_MODE);
 	sprintf((char*)control->print_vector,"%02dC",control->currentTemp);
 	BSP_LCD_DisplayStringAt(25,20+topIcons_h,control->print_vector, LEFT_MODE);
-	sprintf((char*)control->print_vector,"%03dlux",control->currentLumi);
-	BSP_LCD_DisplayStringAt(171,20+topIcons_h,control->print_vector, LEFT_MODE);	
+	sprintf((char*)control->print_vector,"%04dlux",control->currentLumi);
+	BSP_LCD_DisplayStringAt(165,20+topIcons_h,control->print_vector, LEFT_MODE);	
 }
 
 void selectionRender(struct Control * control)
@@ -4096,15 +4096,24 @@ void readSensors(struct Control * control)
 	uint16_t X;
 	
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,100);
+	HAL_ADC_PollForConversion(&hadc1,80);
 	X = HAL_ADC_GetValue(&hadc1); //LEITURA DO CANAL 5
 	HAL_ADC_Stop(&hadc1);
 	
-	//int aux = 4095 - X;
-	//int k = aux / 243; // valor lido no luximetro
-	// x/k lux
 	
-	control->currentLumi = (4095-X)/((4095-X)/243);
+	int calibrando = 0;
+	
+	int fator = 5;
+	
+	if(calibrando)
+	{
+		control->currentLumi = X;
+	}
+	else
+	{
+		control->currentLumi = (4095 - X) / fator;
+	}
+
 	
 }
 uint8_t clockTest(struct Control * control, RTC_TimeTypeDef * time, RTC_DateTypeDef * date, int sel)
