@@ -474,10 +474,11 @@ Section Cross References
     main.o(i.main) refers to main.o(i.selectionRender) for selectionRender
     main.o(i.main) refers to main.o(i.renderBottomMenu) for renderBottomMenu
     main.o(i.main) refers to main.o(i.setFlags) for setFlags
-    main.o(i.main) refers to main.o(i.powerOn) for powerOn
+    main.o(i.main) refers to stm32f4xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     main.o(i.main) refers to stm32f4xx_hal.o(i.HAL_Delay) for HAL_Delay
     main.o(i.main) refers to stm32f429i_discovery_ts.o(i.BSP_TS_GetState) for BSP_TS_GetState
     main.o(i.main) refers to main.o(i.tick) for tick
+    main.o(i.main) refers to main.o(i.powerOn) for powerOn
     main.o(i.main) refers to main.o(i.readSensors) for readSensors
     main.o(i.main) refers to rtc.o(.bss) for hrtc
     main.o(i.main) refers to main.o(.data) for .data
@@ -2326,41 +2327,41 @@ Image Symbol Table
     i.le_umidade                             0x08005894   Section        0  main.o(i.le_umidade)
     i.leftArrowTick                          0x08005944   Section        0  main.o(i.leftArrowTick)
     i.main                                   0x08005a68   Section        0  main.o(i.main)
-    i.powerOn                                0x08005bd0   Section        0  main.o(i.powerOn)
-    i.readSensors                            0x08005c30   Section        0  main.o(i.readSensors)
-    i.renderBottomMenu                       0x08005c7c   Section        0  main.o(i.renderBottomMenu)
-    i.rightArrowTick                         0x08005cc0   Section        0  main.o(i.rightArrowTick)
-    i.selectionRender                        0x08005dfc   Section        0  main.o(i.selectionRender)
-    i.setFlags                               0x08005f9a   Section        0  main.o(i.setFlags)
-    i.start_i2c                              0x08006014   Section        0  main.o(i.start_i2c)
-    i.stmpe811_ClearGlobalIT                 0x08006074   Section        0  stmpe811.o(i.stmpe811_ClearGlobalIT)
-    i.stmpe811_DisableGlobalIT               0x0800607e   Section        0  stmpe811.o(i.stmpe811_DisableGlobalIT)
-    i.stmpe811_DisableITSource               0x0800609a   Section        0  stmpe811.o(i.stmpe811_DisableITSource)
-    i.stmpe811_EnableGlobalIT                0x080060b8   Section        0  stmpe811.o(i.stmpe811_EnableGlobalIT)
-    i.stmpe811_EnableITSource                0x080060d4   Section        0  stmpe811.o(i.stmpe811_EnableITSource)
-    i.stmpe811_GetInstance                   0x080060f4   Section        0  stmpe811.o(i.stmpe811_GetInstance)
-    stmpe811_GetInstance                     0x080060f5   Thumb Code    24  stmpe811.o(i.stmpe811_GetInstance)
-    i.stmpe811_IO_EnableAF                   0x08006110   Section        0  stmpe811.o(i.stmpe811_IO_EnableAF)
-    i.stmpe811_Init                          0x08006130   Section        0  stmpe811.o(i.stmpe811_Init)
-    i.stmpe811_ReadID                        0x08006160   Section        0  stmpe811.o(i.stmpe811_ReadID)
-    i.stmpe811_Reset                         0x08006180   Section        0  stmpe811.o(i.stmpe811_Reset)
-    i.stmpe811_TS_ClearIT                    0x080061a8   Section        0  stmpe811.o(i.stmpe811_TS_ClearIT)
-    i.stmpe811_TS_DetectTouch                0x080061ae   Section        0  stmpe811.o(i.stmpe811_TS_DetectTouch)
-    i.stmpe811_TS_DisableIT                  0x080061e4   Section        0  stmpe811.o(i.stmpe811_TS_DisableIT)
-    i.stmpe811_TS_EnableIT                   0x080061f8   Section        0  stmpe811.o(i.stmpe811_TS_EnableIT)
-    i.stmpe811_TS_GetXY                      0x08006212   Section        0  stmpe811.o(i.stmpe811_TS_GetXY)
-    i.stmpe811_TS_ITStatus                   0x08006250   Section        0  stmpe811.o(i.stmpe811_TS_ITStatus)
-    i.stmpe811_TS_Start                      0x08006260   Section        0  stmpe811.o(i.stmpe811_TS_Start)
-    i.tick                                   0x08006304   Section        0  main.o(i.tick)
-    i.topIconsRender                         0x08006370   Section        0  main.o(i.topIconsRender)
-    .constdata                               0x08006424   Section     6840  stm32f429i_discovery_lcd.o(.constdata)
-    .constdata                               0x08007edc   Section     3040  stm32f429i_discovery_lcd.o(.constdata)
-    .constdata                               0x08008abc   Section     1140  stm32f429i_discovery_lcd.o(.constdata)
-    .constdata                               0x08008f30   Section    53062  main.o(.constdata)
-    .constdata                               0x08015e76   Section        8  stm32f4xx_hal_dma.o(.constdata)
-    flagBitshiftOffset                       0x08015e76   Data           8  stm32f4xx_hal_dma.o(.constdata)
-    .constdata                               0x08015e7e   Section       16  system_stm32f4xx.o(.constdata)
-    .constdata                               0x08015e8e   Section        8  system_stm32f4xx.o(.constdata)
+    i.powerOn                                0x08005c08   Section        0  main.o(i.powerOn)
+    i.readSensors                            0x08005c68   Section        0  main.o(i.readSensors)
+    i.renderBottomMenu                       0x08005cb4   Section        0  main.o(i.renderBottomMenu)
+    i.rightArrowTick                         0x08005cf8   Section        0  main.o(i.rightArrowTick)
+    i.selectionRender                        0x08005e34   Section        0  main.o(i.selectionRender)
+    i.setFlags                               0x08005fd2   Section        0  main.o(i.setFlags)
+    i.start_i2c                              0x0800604c   Section        0  main.o(i.start_i2c)
+    i.stmpe811_ClearGlobalIT                 0x080060ac   Section        0  stmpe811.o(i.stmpe811_ClearGlobalIT)
+    i.stmpe811_DisableGlobalIT               0x080060b6   Section        0  stmpe811.o(i.stmpe811_DisableGlobalIT)
+    i.stmpe811_DisableITSource               0x080060d2   Section        0  stmpe811.o(i.stmpe811_DisableITSource)
+    i.stmpe811_EnableGlobalIT                0x080060f0   Section        0  stmpe811.o(i.stmpe811_EnableGlobalIT)
+    i.stmpe811_EnableITSource                0x0800610c   Section        0  stmpe811.o(i.stmpe811_EnableITSource)
+    i.stmpe811_GetInstance                   0x0800612c   Section        0  stmpe811.o(i.stmpe811_GetInstance)
+    stmpe811_GetInstance                     0x0800612d   Thumb Code    24  stmpe811.o(i.stmpe811_GetInstance)
+    i.stmpe811_IO_EnableAF                   0x08006148   Section        0  stmpe811.o(i.stmpe811_IO_EnableAF)
+    i.stmpe811_Init                          0x08006168   Section        0  stmpe811.o(i.stmpe811_Init)
+    i.stmpe811_ReadID                        0x08006198   Section        0  stmpe811.o(i.stmpe811_ReadID)
+    i.stmpe811_Reset                         0x080061b8   Section        0  stmpe811.o(i.stmpe811_Reset)
+    i.stmpe811_TS_ClearIT                    0x080061e0   Section        0  stmpe811.o(i.stmpe811_TS_ClearIT)
+    i.stmpe811_TS_DetectTouch                0x080061e6   Section        0  stmpe811.o(i.stmpe811_TS_DetectTouch)
+    i.stmpe811_TS_DisableIT                  0x0800621c   Section        0  stmpe811.o(i.stmpe811_TS_DisableIT)
+    i.stmpe811_TS_EnableIT                   0x08006230   Section        0  stmpe811.o(i.stmpe811_TS_EnableIT)
+    i.stmpe811_TS_GetXY                      0x0800624a   Section        0  stmpe811.o(i.stmpe811_TS_GetXY)
+    i.stmpe811_TS_ITStatus                   0x08006288   Section        0  stmpe811.o(i.stmpe811_TS_ITStatus)
+    i.stmpe811_TS_Start                      0x08006298   Section        0  stmpe811.o(i.stmpe811_TS_Start)
+    i.tick                                   0x0800633c   Section        0  main.o(i.tick)
+    i.topIconsRender                         0x080063a8   Section        0  main.o(i.topIconsRender)
+    .constdata                               0x0800645c   Section     6840  stm32f429i_discovery_lcd.o(.constdata)
+    .constdata                               0x08007f14   Section     3040  stm32f429i_discovery_lcd.o(.constdata)
+    .constdata                               0x08008af4   Section     1140  stm32f429i_discovery_lcd.o(.constdata)
+    .constdata                               0x08008f68   Section    53062  main.o(.constdata)
+    .constdata                               0x08015eae   Section        8  stm32f4xx_hal_dma.o(.constdata)
+    flagBitshiftOffset                       0x08015eae   Data           8  stm32f4xx_hal_dma.o(.constdata)
+    .constdata                               0x08015eb6   Section       16  system_stm32f4xx.o(.constdata)
+    .constdata                               0x08015ec6   Section        8  system_stm32f4xx.o(.constdata)
     .data                                    0x20000000   Section       24  stm32f429i_discovery.o(.data)
     Is_LCD_IO_Initialized                    0x20000000   Data           1  stm32f429i_discovery.o(.data)
     .data                                    0x20000018   Section       16  stm32f429i_discovery_lcd.o(.data)
@@ -2740,48 +2741,48 @@ Image Symbol Table
     le_temperatura                           0x08005815   Thumb Code   112  main.o(i.le_temperatura)
     le_umidade                               0x08005895   Thumb Code   152  main.o(i.le_umidade)
     leftArrowTick                            0x08005945   Thumb Code   292  main.o(i.leftArrowTick)
-    main                                     0x08005a69   Thumb Code   350  main.o(i.main)
-    powerOn                                  0x08005bd1   Thumb Code    90  main.o(i.powerOn)
-    readSensors                              0x08005c31   Thumb Code    72  main.o(i.readSensors)
-    renderBottomMenu                         0x08005c7d   Thumb Code    50  main.o(i.renderBottomMenu)
-    rightArrowTick                           0x08005cc1   Thumb Code   316  main.o(i.rightArrowTick)
-    selectionRender                          0x08005dfd   Thumb Code   414  main.o(i.selectionRender)
-    setFlags                                 0x08005f9b   Thumb Code   120  main.o(i.setFlags)
-    start_i2c                                0x08006015   Thumb Code    92  main.o(i.start_i2c)
-    stmpe811_ClearGlobalIT                   0x08006075   Thumb Code    10  stmpe811.o(i.stmpe811_ClearGlobalIT)
-    stmpe811_DisableGlobalIT                 0x0800607f   Thumb Code    28  stmpe811.o(i.stmpe811_DisableGlobalIT)
-    stmpe811_DisableITSource                 0x0800609b   Thumb Code    30  stmpe811.o(i.stmpe811_DisableITSource)
-    stmpe811_EnableGlobalIT                  0x080060b9   Thumb Code    28  stmpe811.o(i.stmpe811_EnableGlobalIT)
-    stmpe811_EnableITSource                  0x080060d5   Thumb Code    30  stmpe811.o(i.stmpe811_EnableITSource)
-    stmpe811_IO_EnableAF                     0x08006111   Thumb Code    30  stmpe811.o(i.stmpe811_IO_EnableAF)
-    stmpe811_Init                            0x08006131   Thumb Code    42  stmpe811.o(i.stmpe811_Init)
-    stmpe811_ReadID                          0x08006161   Thumb Code    32  stmpe811.o(i.stmpe811_ReadID)
-    stmpe811_Reset                           0x08006181   Thumb Code    40  stmpe811.o(i.stmpe811_Reset)
-    stmpe811_TS_ClearIT                      0x080061a9   Thumb Code     6  stmpe811.o(i.stmpe811_TS_ClearIT)
-    stmpe811_TS_DetectTouch                  0x080061af   Thumb Code    54  stmpe811.o(i.stmpe811_TS_DetectTouch)
-    stmpe811_TS_DisableIT                    0x080061e5   Thumb Code    20  stmpe811.o(i.stmpe811_TS_DisableIT)
-    stmpe811_TS_EnableIT                     0x080061f9   Thumb Code    26  stmpe811.o(i.stmpe811_TS_EnableIT)
-    stmpe811_TS_GetXY                        0x08006213   Thumb Code    62  stmpe811.o(i.stmpe811_TS_GetXY)
-    stmpe811_TS_ITStatus                     0x08006251   Thumb Code    16  stmpe811.o(i.stmpe811_TS_ITStatus)
-    stmpe811_TS_Start                        0x08006261   Thumb Code   162  stmpe811.o(i.stmpe811_TS_Start)
-    tick                                     0x08006305   Thumb Code   102  main.o(i.tick)
-    topIconsRender                           0x08006371   Thumb Code   130  main.o(i.topIconsRender)
-    Font24_Table                             0x08006424   Data        6840  stm32f429i_discovery_lcd.o(.constdata)
-    Font16_Table                             0x08007edc   Data        3040  stm32f429i_discovery_lcd.o(.constdata)
-    Font12_Table                             0x08008abc   Data        1140  stm32f429i_discovery_lcd.o(.constdata)
-    thermo                                   0x08008f30   Data        9302  main.o(.constdata)
-    lamp                                     0x0800b386   Data        9302  main.o(.constdata)
-    rightArrow                               0x0800d7dc   Data        4662  main.o(.constdata)
-    leftArrow                                0x0800ea12   Data        4662  main.o(.constdata)
-    drop                                     0x0800fc48   Data        9302  main.o(.constdata)
-    gear                                     0x0801209e   Data        4662  main.o(.constdata)
-    check                                    0x080132d4   Data        4662  main.o(.constdata)
-    button                                   0x0801450a   Data        3254  main.o(.constdata)
-    button2                                  0x080151c0   Data        3254  main.o(.constdata)
-    AHBPrescTable                            0x08015e7e   Data          16  system_stm32f4xx.o(.constdata)
-    APBPrescTable                            0x08015e8e   Data           8  system_stm32f4xx.o(.constdata)
-    Region$$Table$$Base                      0x08015e98   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08015eb8   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08005a69   Thumb Code   402  main.o(i.main)
+    powerOn                                  0x08005c09   Thumb Code    90  main.o(i.powerOn)
+    readSensors                              0x08005c69   Thumb Code    72  main.o(i.readSensors)
+    renderBottomMenu                         0x08005cb5   Thumb Code    50  main.o(i.renderBottomMenu)
+    rightArrowTick                           0x08005cf9   Thumb Code   316  main.o(i.rightArrowTick)
+    selectionRender                          0x08005e35   Thumb Code   414  main.o(i.selectionRender)
+    setFlags                                 0x08005fd3   Thumb Code   120  main.o(i.setFlags)
+    start_i2c                                0x0800604d   Thumb Code    92  main.o(i.start_i2c)
+    stmpe811_ClearGlobalIT                   0x080060ad   Thumb Code    10  stmpe811.o(i.stmpe811_ClearGlobalIT)
+    stmpe811_DisableGlobalIT                 0x080060b7   Thumb Code    28  stmpe811.o(i.stmpe811_DisableGlobalIT)
+    stmpe811_DisableITSource                 0x080060d3   Thumb Code    30  stmpe811.o(i.stmpe811_DisableITSource)
+    stmpe811_EnableGlobalIT                  0x080060f1   Thumb Code    28  stmpe811.o(i.stmpe811_EnableGlobalIT)
+    stmpe811_EnableITSource                  0x0800610d   Thumb Code    30  stmpe811.o(i.stmpe811_EnableITSource)
+    stmpe811_IO_EnableAF                     0x08006149   Thumb Code    30  stmpe811.o(i.stmpe811_IO_EnableAF)
+    stmpe811_Init                            0x08006169   Thumb Code    42  stmpe811.o(i.stmpe811_Init)
+    stmpe811_ReadID                          0x08006199   Thumb Code    32  stmpe811.o(i.stmpe811_ReadID)
+    stmpe811_Reset                           0x080061b9   Thumb Code    40  stmpe811.o(i.stmpe811_Reset)
+    stmpe811_TS_ClearIT                      0x080061e1   Thumb Code     6  stmpe811.o(i.stmpe811_TS_ClearIT)
+    stmpe811_TS_DetectTouch                  0x080061e7   Thumb Code    54  stmpe811.o(i.stmpe811_TS_DetectTouch)
+    stmpe811_TS_DisableIT                    0x0800621d   Thumb Code    20  stmpe811.o(i.stmpe811_TS_DisableIT)
+    stmpe811_TS_EnableIT                     0x08006231   Thumb Code    26  stmpe811.o(i.stmpe811_TS_EnableIT)
+    stmpe811_TS_GetXY                        0x0800624b   Thumb Code    62  stmpe811.o(i.stmpe811_TS_GetXY)
+    stmpe811_TS_ITStatus                     0x08006289   Thumb Code    16  stmpe811.o(i.stmpe811_TS_ITStatus)
+    stmpe811_TS_Start                        0x08006299   Thumb Code   162  stmpe811.o(i.stmpe811_TS_Start)
+    tick                                     0x0800633d   Thumb Code   102  main.o(i.tick)
+    topIconsRender                           0x080063a9   Thumb Code   130  main.o(i.topIconsRender)
+    Font24_Table                             0x0800645c   Data        6840  stm32f429i_discovery_lcd.o(.constdata)
+    Font16_Table                             0x08007f14   Data        3040  stm32f429i_discovery_lcd.o(.constdata)
+    Font12_Table                             0x08008af4   Data        1140  stm32f429i_discovery_lcd.o(.constdata)
+    thermo                                   0x08008f68   Data        9302  main.o(.constdata)
+    lamp                                     0x0800b3be   Data        9302  main.o(.constdata)
+    rightArrow                               0x0800d814   Data        4662  main.o(.constdata)
+    leftArrow                                0x0800ea4a   Data        4662  main.o(.constdata)
+    drop                                     0x0800fc80   Data        9302  main.o(.constdata)
+    gear                                     0x080120d6   Data        4662  main.o(.constdata)
+    check                                    0x0801330c   Data        4662  main.o(.constdata)
+    button                                   0x08014542   Data        3254  main.o(.constdata)
+    button2                                  0x080151f8   Data        3254  main.o(.constdata)
+    AHBPrescTable                            0x08015eb6   Data          16  system_stm32f4xx.o(.constdata)
+    APBPrescTable                            0x08015ec6   Data           8  system_stm32f4xx.o(.constdata)
+    Region$$Table$$Base                      0x08015ed0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08015ef0   Number         0  anon$$obj.o(Region$$Table)
     BUTTON_PORT                              0x20000004   Data           4  stm32f429i_discovery.o(.data)
     I2cxTimeout                              0x20000008   Data           4  stm32f429i_discovery.o(.data)
     SpixTimeout                              0x2000000c   Data           4  stm32f429i_discovery.o(.data)
@@ -2817,9 +2818,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00015f84, Max: 0x00200000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00015fbc, Max: 0x00200000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00015eb8, Max: 0x00200000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00015ef0, Max: 0x00200000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3046,67 +3047,67 @@ Memory Map of the image
     0x08005814   0x08005814   0x00000080   Code   RO         1177    i.le_temperatura    main.o
     0x08005894   0x08005894   0x000000b0   Code   RO         1178    i.le_umidade        main.o
     0x08005944   0x08005944   0x00000124   Code   RO         1179    i.leftArrowTick     main.o
-    0x08005a68   0x08005a68   0x00000168   Code   RO         1180    i.main              main.o
-    0x08005bd0   0x08005bd0   0x00000060   Code   RO         1181    i.powerOn           main.o
-    0x08005c30   0x08005c30   0x0000004c   Code   RO         1182    i.readSensors       main.o
-    0x08005c7c   0x08005c7c   0x00000044   Code   RO         1183    i.renderBottomMenu  main.o
-    0x08005cc0   0x08005cc0   0x0000013c   Code   RO         1184    i.rightArrowTick    main.o
-    0x08005dfc   0x08005dfc   0x0000019e   Code   RO         1185    i.selectionRender   main.o
-    0x08005f9a   0x08005f9a   0x00000078   Code   RO         1186    i.setFlags          main.o
-    0x08006012   0x08006012   0x00000002   PAD
-    0x08006014   0x08006014   0x00000060   Code   RO         1187    i.start_i2c         main.o
-    0x08006074   0x08006074   0x0000000a   Code   RO          952    i.stmpe811_ClearGlobalIT  stmpe811.o
-    0x0800607e   0x0800607e   0x0000001c   Code   RO          953    i.stmpe811_DisableGlobalIT  stmpe811.o
-    0x0800609a   0x0800609a   0x0000001e   Code   RO          954    i.stmpe811_DisableITSource  stmpe811.o
-    0x080060b8   0x080060b8   0x0000001c   Code   RO          955    i.stmpe811_EnableGlobalIT  stmpe811.o
-    0x080060d4   0x080060d4   0x0000001e   Code   RO          956    i.stmpe811_EnableITSource  stmpe811.o
-    0x080060f2   0x080060f2   0x00000002   PAD
-    0x080060f4   0x080060f4   0x0000001c   Code   RO          957    i.stmpe811_GetInstance  stmpe811.o
-    0x08006110   0x08006110   0x0000001e   Code   RO          964    i.stmpe811_IO_EnableAF  stmpe811.o
-    0x0800612e   0x0800612e   0x00000002   PAD
-    0x08006130   0x08006130   0x00000030   Code   RO          973    i.stmpe811_Init     stmpe811.o
-    0x08006160   0x08006160   0x00000020   Code   RO          975    i.stmpe811_ReadID   stmpe811.o
-    0x08006180   0x08006180   0x00000028   Code   RO          976    i.stmpe811_Reset    stmpe811.o
-    0x080061a8   0x080061a8   0x00000006   Code   RO          979    i.stmpe811_TS_ClearIT  stmpe811.o
-    0x080061ae   0x080061ae   0x00000036   Code   RO          980    i.stmpe811_TS_DetectTouch  stmpe811.o
-    0x080061e4   0x080061e4   0x00000014   Code   RO          981    i.stmpe811_TS_DisableIT  stmpe811.o
-    0x080061f8   0x080061f8   0x0000001a   Code   RO          982    i.stmpe811_TS_EnableIT  stmpe811.o
-    0x08006212   0x08006212   0x0000003e   Code   RO          983    i.stmpe811_TS_GetXY  stmpe811.o
-    0x08006250   0x08006250   0x00000010   Code   RO          984    i.stmpe811_TS_ITStatus  stmpe811.o
-    0x08006260   0x08006260   0x000000a2   Code   RO          985    i.stmpe811_TS_Start  stmpe811.o
-    0x08006302   0x08006302   0x00000002   PAD
-    0x08006304   0x08006304   0x0000006c   Code   RO         1189    i.tick              main.o
-    0x08006370   0x08006370   0x000000b4   Code   RO         1190    i.topIconsRender    main.o
-    0x08006424   0x08006424   0x00001ab8   Data   RO          450    .constdata          stm32f429i_discovery_lcd.o
-    0x08007edc   0x08007edc   0x00000be0   Data   RO          452    .constdata          stm32f429i_discovery_lcd.o
-    0x08008abc   0x08008abc   0x00000474   Data   RO          453    .constdata          stm32f429i_discovery_lcd.o
-    0x08008f30   0x08008f30   0x0000cf46   Data   RO         1191    .constdata          main.o
-    0x08015e76   0x08015e76   0x00000008   Data   RO         4585    .constdata          stm32f4xx_hal_dma.o
-    0x08015e7e   0x08015e7e   0x00000010   Data   RO         5188    .constdata          system_stm32f4xx.o
-    0x08015e8e   0x08015e8e   0x00000008   Data   RO         5189    .constdata          system_stm32f4xx.o
-    0x08015e96   0x08015e96   0x00000002   PAD
-    0x08015e98   0x08015e98   0x00000020   Data   RO         5543    Region$$Table       anon$$obj.o
+    0x08005a68   0x08005a68   0x000001a0   Code   RO         1180    i.main              main.o
+    0x08005c08   0x08005c08   0x00000060   Code   RO         1181    i.powerOn           main.o
+    0x08005c68   0x08005c68   0x0000004c   Code   RO         1182    i.readSensors       main.o
+    0x08005cb4   0x08005cb4   0x00000044   Code   RO         1183    i.renderBottomMenu  main.o
+    0x08005cf8   0x08005cf8   0x0000013c   Code   RO         1184    i.rightArrowTick    main.o
+    0x08005e34   0x08005e34   0x0000019e   Code   RO         1185    i.selectionRender   main.o
+    0x08005fd2   0x08005fd2   0x00000078   Code   RO         1186    i.setFlags          main.o
+    0x0800604a   0x0800604a   0x00000002   PAD
+    0x0800604c   0x0800604c   0x00000060   Code   RO         1187    i.start_i2c         main.o
+    0x080060ac   0x080060ac   0x0000000a   Code   RO          952    i.stmpe811_ClearGlobalIT  stmpe811.o
+    0x080060b6   0x080060b6   0x0000001c   Code   RO          953    i.stmpe811_DisableGlobalIT  stmpe811.o
+    0x080060d2   0x080060d2   0x0000001e   Code   RO          954    i.stmpe811_DisableITSource  stmpe811.o
+    0x080060f0   0x080060f0   0x0000001c   Code   RO          955    i.stmpe811_EnableGlobalIT  stmpe811.o
+    0x0800610c   0x0800610c   0x0000001e   Code   RO          956    i.stmpe811_EnableITSource  stmpe811.o
+    0x0800612a   0x0800612a   0x00000002   PAD
+    0x0800612c   0x0800612c   0x0000001c   Code   RO          957    i.stmpe811_GetInstance  stmpe811.o
+    0x08006148   0x08006148   0x0000001e   Code   RO          964    i.stmpe811_IO_EnableAF  stmpe811.o
+    0x08006166   0x08006166   0x00000002   PAD
+    0x08006168   0x08006168   0x00000030   Code   RO          973    i.stmpe811_Init     stmpe811.o
+    0x08006198   0x08006198   0x00000020   Code   RO          975    i.stmpe811_ReadID   stmpe811.o
+    0x080061b8   0x080061b8   0x00000028   Code   RO          976    i.stmpe811_Reset    stmpe811.o
+    0x080061e0   0x080061e0   0x00000006   Code   RO          979    i.stmpe811_TS_ClearIT  stmpe811.o
+    0x080061e6   0x080061e6   0x00000036   Code   RO          980    i.stmpe811_TS_DetectTouch  stmpe811.o
+    0x0800621c   0x0800621c   0x00000014   Code   RO          981    i.stmpe811_TS_DisableIT  stmpe811.o
+    0x08006230   0x08006230   0x0000001a   Code   RO          982    i.stmpe811_TS_EnableIT  stmpe811.o
+    0x0800624a   0x0800624a   0x0000003e   Code   RO          983    i.stmpe811_TS_GetXY  stmpe811.o
+    0x08006288   0x08006288   0x00000010   Code   RO          984    i.stmpe811_TS_ITStatus  stmpe811.o
+    0x08006298   0x08006298   0x000000a2   Code   RO          985    i.stmpe811_TS_Start  stmpe811.o
+    0x0800633a   0x0800633a   0x00000002   PAD
+    0x0800633c   0x0800633c   0x0000006c   Code   RO         1189    i.tick              main.o
+    0x080063a8   0x080063a8   0x000000b4   Code   RO         1190    i.topIconsRender    main.o
+    0x0800645c   0x0800645c   0x00001ab8   Data   RO          450    .constdata          stm32f429i_discovery_lcd.o
+    0x08007f14   0x08007f14   0x00000be0   Data   RO          452    .constdata          stm32f429i_discovery_lcd.o
+    0x08008af4   0x08008af4   0x00000474   Data   RO          453    .constdata          stm32f429i_discovery_lcd.o
+    0x08008f68   0x08008f68   0x0000cf46   Data   RO         1191    .constdata          main.o
+    0x08015eae   0x08015eae   0x00000008   Data   RO         4585    .constdata          stm32f4xx_hal_dma.o
+    0x08015eb6   0x08015eb6   0x00000010   Data   RO         5188    .constdata          system_stm32f4xx.o
+    0x08015ec6   0x08015ec6   0x00000008   Data   RO         5189    .constdata          system_stm32f4xx.o
+    0x08015ece   0x08015ece   0x00000002   PAD
+    0x08015ed0   0x08015ed0   0x00000020   Data   RO         5543    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08015eb8, Size: 0x000009f8, Max: 0x00030000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08015ef0, Size: 0x000009f8, Max: 0x00030000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08015eb8   0x00000018   Data   RW           44    .data               stm32f429i_discovery.o
-    0x20000018   0x08015ed0   0x00000010   Data   RW          455    .data               stm32f429i_discovery_lcd.o
-    0x20000028   0x08015ee0   0x00000008   Data   RW          457    .data               stm32f429i_discovery_lcd.o
-    0x20000030   0x08015ee8   0x00000008   Data   RW          458    .data               stm32f429i_discovery_lcd.o
-    0x20000038   0x08015ef0   0x00000001   Data   RW          764    .data               stm32f429i_discovery_sdram.o
-    0x20000039   0x08015ef1   0x00000003   PAD
-    0x2000003c   0x08015ef4   0x00000010   Data   RW          839    .data               stm32f429i_discovery_ts.o
-    0x2000004c   0x08015f04   0x00000038   Data   RW          893    .data               ili9341.o
-    0x20000084   0x08015f3c   0x00000028   Data   RW          986    .data               stmpe811.o
-    0x200000ac   0x08015f64   0x00000002   Data   RW          988    .data               stmpe811.o
-    0x200000ae   0x08015f66   0x00000002   PAD
-    0x200000b0   0x08015f68   0x00000004   Data   RW         1201    .data               main.o
-    0x200000b4   0x08015f6c   0x00000008   Data   RW         1502    .data               fmc.o
-    0x200000bc   0x08015f74   0x0000000c   Data   RW         5030    .data               stm32f4xx_hal.o
-    0x200000c8   0x08015f80   0x00000004   Data   RW         5190    .data               system_stm32f4xx.o
+    0x20000000   0x08015ef0   0x00000018   Data   RW           44    .data               stm32f429i_discovery.o
+    0x20000018   0x08015f08   0x00000010   Data   RW          455    .data               stm32f429i_discovery_lcd.o
+    0x20000028   0x08015f18   0x00000008   Data   RW          457    .data               stm32f429i_discovery_lcd.o
+    0x20000030   0x08015f20   0x00000008   Data   RW          458    .data               stm32f429i_discovery_lcd.o
+    0x20000038   0x08015f28   0x00000001   Data   RW          764    .data               stm32f429i_discovery_sdram.o
+    0x20000039   0x08015f29   0x00000003   PAD
+    0x2000003c   0x08015f2c   0x00000010   Data   RW          839    .data               stm32f429i_discovery_ts.o
+    0x2000004c   0x08015f3c   0x00000038   Data   RW          893    .data               ili9341.o
+    0x20000084   0x08015f74   0x00000028   Data   RW          986    .data               stmpe811.o
+    0x200000ac   0x08015f9c   0x00000002   Data   RW          988    .data               stmpe811.o
+    0x200000ae   0x08015f9e   0x00000002   PAD
+    0x200000b0   0x08015fa0   0x00000004   Data   RW         1201    .data               main.o
+    0x200000b4   0x08015fa4   0x00000008   Data   RW         1502    .data               fmc.o
+    0x200000bc   0x08015fac   0x0000000c   Data   RW         5030    .data               stm32f4xx_hal.o
+    0x200000c8   0x08015fb8   0x00000004   Data   RW         5190    .data               system_stm32f4xx.o
     0x200000cc        -       0x000000ac   Zero   RW           42    .bss                stm32f429i_discovery.o
     0x20000178        -       0x00000130   Zero   RW          449    .bss                stm32f429i_discovery_lcd.o
     0x200002a8        -       0x00000120   Zero   RW          763    .bss                stm32f429i_discovery_sdram.o
@@ -3134,7 +3135,7 @@ Image component sizes
        296         48          0          0         84       2297   i2c.o
        698          0          0         56          0       8847   ili9341.o
        588         40          0          0        168       2098   ltdc.o
-      4050        476      53062          4          0      19115   main.o
+      4106        480      53062          4          0      19139   main.o
        152         16          0          0         32       1547   rtc.o
        216         34          0          0         88       2169   spi.o
         36          8        428          0       1024        840   startup_stm32f429xx.o
@@ -3164,7 +3165,7 @@ Image component sizes
         84         18         24          4          0       1171   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-     22948       1568      64576        204       2348     980120   Object Totals
+     23004       1572      64576        204       2348     980144   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         46          0          2          5          0          0   (incl. Padding)
 
@@ -3220,15 +3221,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     25208       1594      64576        204       2348     962656   Grand Totals
-     25208       1594      64576        204       2348     962656   ELF Image Totals
-     25208       1594      64576        204          0          0   ROM Totals
+     25264       1598      64576        204       2348     962680   Grand Totals
+     25264       1598      64576        204       2348     962680   ELF Image Totals
+     25264       1598      64576        204          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                89784 (  87.68kB)
+    Total RO  Size (Code + RO Data)                89840 (  87.73kB)
     Total RW  Size (RW Data + ZI Data)              2552 (   2.49kB)
-    Total ROM Size (Code + RO Data + RW Data)      89988 (  87.88kB)
+    Total ROM Size (Code + RO Data + RW Data)      90044 (  87.93kB)
 
 ==============================================================================
 

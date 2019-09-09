@@ -3683,7 +3683,19 @@ int main(void)
     renderBottomMenu();
 		
 		setFlags(&control, &sTime, &sDate);
-		powerOn(&control);
+		
+		if(ligado == 1)
+		{
+			powerOn(&control);
+		}
+		else
+		{
+			HAL_GPIO_WritePin(GPIOE,LED1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOE,LED2_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOE,LED3_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOE,LED4_Pin,GPIO_PIN_RESET);
+		}
+		
 		
 		if(control.state == IDLE)
 		{
@@ -4541,7 +4553,7 @@ void readSensors(struct Control * control)
 	
 	int calibrando = 0;
 	
-	int fator = 5;
+	int fator = 9;
 	
 	if(calibrando)
 	{

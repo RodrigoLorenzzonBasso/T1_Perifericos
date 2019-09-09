@@ -3,7 +3,7 @@
 <title>Static Call Graph - [DisplayLCD\DisplayLCD.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DisplayLCD\DisplayLCD.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Aug 29 16:48:48 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Sep 09 16:45:21 2019
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -767,7 +767,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SDRAM_Init
 </UL>
 
-<P><STRONG><a name="[12b]"></a>BSP_TS_GetState</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, stm32f429i_discovery_ts.o(i.BSP_TS_GetState))
+<P><STRONG><a name="[12a]"></a>BSP_TS_GetState</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, stm32f429i_discovery_ts.o(i.BSP_TS_GetState))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = BSP_TS_GetState
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -984,7 +984,8 @@ Global Symbols
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_ReadData
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_IO_Init
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;powerOn
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;powerOn
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[b0]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_hal.o(i.HAL_GetTick))
@@ -1706,7 +1707,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_SetTextColor
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_DrawCircle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
+<BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
 </UL>
 
 <P><STRONG><a name="[11b]"></a>clockTest</STRONG> (Thumb, 206 bytes, Stack size 24 bytes, main.o(i.clockTest))
@@ -1737,7 +1738,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[138]"></a>gearTick</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(i.gearTick))
-<BR><BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
+<BR><BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
 </UL>
 
 <P><STRONG><a name="[6b]"></a>ili9341_DisplayOff</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, ili9341.o(i.ili9341_DisplayOff))
@@ -1836,13 +1837,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[139]"></a>leftArrowTick</STRONG> (Thumb, 292 bytes, Stack size 0 bytes, main.o(i.leftArrowTick))
-<BR><BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
+<BR><BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
 </UL>
 
-<P><STRONG><a name="[64]"></a>main</STRONG> (Thumb, 350 bytes, Stack size 112 bytes, main.o(i.main))
+<P><STRONG><a name="[64]"></a>main</STRONG> (Thumb, 402 bytes, Stack size 112 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = main &rArr; MX_LTDC_Init &rArr; HAL_LTDC_Init &rArr; HAL_LTDC_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI5_Init
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_RTC_Init
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_LTDC_Init
@@ -1855,17 +1857,17 @@ Global Symbols
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RTC_SetDate
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;topIconsRender
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFlags
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;selectionRender
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;renderBottomMenu
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readSensors
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;powerOn
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;powerOn
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infosMenuRender
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Render
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_TS_Init
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_TS_GetState
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_TS_GetState
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_SetTextColor
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_SelectLayer
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_LCD_LayerDefaultInit
@@ -1875,7 +1877,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[12a]"></a>powerOn</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, main.o(i.powerOn))
+<P><STRONG><a name="[12c]"></a>powerOn</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, main.o(i.powerOn))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = powerOn
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -1905,7 +1907,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[13a]"></a>rightArrowTick</STRONG> (Thumb, 316 bytes, Stack size 0 bytes, main.o(i.rightArrowTick))
-<BR><BR>[Called By]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
+<BR><BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tick
 </UL>
 
 <P><STRONG><a name="[127]"></a>selectionRender</STRONG> (Thumb, 414 bytes, Stack size 16 bytes, main.o(i.selectionRender))
@@ -2071,7 +2073,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> stmpe811.o(.data)
 </UL>
-<P><STRONG><a name="[12c]"></a>tick</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, main.o(i.tick))
+<P><STRONG><a name="[12b]"></a>tick</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, main.o(i.tick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = tick &rArr; checkTick &rArr; BSP_LCD_DrawCircle &rArr; BSP_LCD_DrawPixel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rightArrowTick
